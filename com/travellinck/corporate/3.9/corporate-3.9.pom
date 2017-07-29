@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck</groupId>
+    <artifactId>corporate</artifactId>
+    <version>3.9</version>
+    <packaging>pom</packaging>
+    <name>Travellinck :: Corporate travel project</name>
+    <url>http://www.travellinck.com/</url>
+    <description>
+        Java EE Application Suite that forms the core business model and user interface
+        of the Travellinck corporate travel solution. Has dependencies on projects in
+        travellinck-osgi and travellinck-rio.
+    </description>
+
+    <modules>
+        <module>corporateBusinessModel</module>
+        <module>corporateMarketingSite</module>
+        <module>adminInterface</module>
+        <module>corporateInterface</module>
+        <module>shortenURL</module>
+        <module>corporateEar</module>
+        <module>clients</module>
+    </modules>
+
+    <developers>
+        <developer>
+            <id>graham</id>
+            <name>Graham Withey</name>
+            <email>graham@travellinck.com</email>
+            <roles>
+                <role>Project Manager</role>
+                <role>Developer</role>
+            </roles>
+            <organization>Travellinck International Pty Ltd</organization>
+            <organizationUrl>http://www.travellinck.com</organizationUrl>
+            <timezone>+2</timezone>
+        </developer>
+        <developer>
+            <id>dawid</id>
+            <name>Dawid Loubser</name>
+            <email>dawid@travellinck.com</email>
+            <roles>
+                <role>Architect</role>
+            </roles>
+            <organization>Travellinck International Pty Ltd</organization>
+            <organizationUrl>http://www.travellinck.com</organizationUrl>
+            <timezone>+2</timezone>
+        </developer>
+        <developer>
+            <id>ettienne</id>
+            <name>Ettienne van Vuuren</name>
+            <email>ettienne@travellinck.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>Travellinck International Pty Ltd</organization>
+            <organizationUrl>http://www.travellinck.com</organizationUrl>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
+
+    <!-- Add ServiceMix repositories for snaphots and releases -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>java.net2</id>
+            <url>http://download.java.net/maven/2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+    <repositories>
+        <!-- Temporarily disabled (June 2013) because repo server at Vox has been discontinued, needs to be moved:
+        <repository>
+            <id>travellinck-repo</id>
+            <url>http://repo.travellinck.com/nexus/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        -->
+
+        <repository>
+            <id>java.net2</id>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>Glassfish</id>
+            <name>Glassfish Repository</name>
+            <url>http://download.java.net/maven/glassfish</url>
+        </repository>
+
+
+        <repository>
+            <id>The Buzz Media Maven Repository</id>
+            <url>http://maven.thebuzzmedia.com</url>
+        </repository>
+
+    </repositories>
+
+    <build>
+        <!-- Central specification of versiosn of all Maven plugins used in sub-projects -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                        <fork>true</fork>
+                        <maxmem>768m</maxmem>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <version>2.3</version>
+                    <configuration>
+                        <ejbVersion>3.1</ejbVersion>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.9</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>jaxws-maven-plugin</artifactId>
+                    <version>1.12</version>
+                    <configuration>
+                        <target>2.1</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.1.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo.jspc</groupId>
+                    <artifactId>jspc-maven-plugin</artifactId>
+                    <version>2.0-alpha-3</version>
+                </plugin>
+                <!-- Integration testing -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.9</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.travellinck.integration.core</groupId>
+                <artifactId>com.travellinck.communication.gsm.sms-api</artifactId>
+                <version>1.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- Ultra Simple Api trip and traveller persistence-->
+            <dependency>
+                <groupId>com.travellinck.integration.core</groupId>
+                <artifactId>com.travellinck.corporate.integration</artifactId>
+                <version>1.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.travellinck</groupId>
+                <artifactId>corporateBusinessModel</artifactId>
+                <version>${corporate.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- This is a Java EE 6 app -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>6.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>persistence-api</artifactId>
+                <version>1.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit-dep</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jmock</groupId>
+                <artifactId>jmock-junit4</artifactId>
+                <version>2.6.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.travellinck.integration.utilities</groupId>
+                <artifactId>travellinck-testing-utilities</artifactId>
+                <version>0.3.1</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!--Travellinck toolkit-->
+            <dependency>
+                <groupId>com.travellinck.integration.utilities</groupId>
+                <artifactId>com.travellinck.transIT.java-tools</artifactId>
+                <version>${transit-tools-version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--Travellinck vocubulary-->
+            <dependency>
+                <groupId>com.travellinck.integration.vocabulary</groupId>
+                <artifactId>com.travellinck.transIT.java-api</artifactId>
+                <version>${transit-vocabulary-version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--Travellinck XML utilities-->
+            <dependency>
+                <groupId>com.travellinck.integration.utilities</groupId>
+                <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+                <version>${xml-utilities-version}</version>
+            </dependency>
+
+            <!--  TravelTalk Java Contract -->
+            <dependency>
+                <groupId>com.travellinck.integration.suppliers.traveltalk</groupId>
+                <artifactId>traveltalk-contract</artifactId>
+                <version>1.2</version>
+            </dependency>
+
+            <!--Carbon emissions calculator -->
+            <dependency>
+                <groupId>com.travellinck.integration.utilities</groupId>
+                <artifactId>com.travellinck.integration.utilities.carbonEmissions</artifactId>
+                <version>1.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--The struts libraries that are needed by the web modules -->
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-core</artifactId>
+                <version>1.4.1-ee6</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.jexcelapi</groupId>
+                <artifactId>jxl</artifactId>
+                <version>2.6.12</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-tiles</artifactId>
+                <version>1.4.1-ee6</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-taglib</artifactId>
+                <version>1.4.1-ee6</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-secure-extensions</artifactId>
+                <version>1.4.1-ee6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.nkp.struts13.sslext</groupId>
+                <artifactId>sslext</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.16</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.0.3</version>
+            </dependency>
+
+            <!-- OSGi (integration/soa layer is an OSGi suite) -->
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi_R4_core</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi_R4_compendium</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <!-- General Java utilities (mostly date/time etc) -->
+            <!-- Note: This is not an OSGi module, it's bundled with -->
+            <dependency>
+                <groupId>com.travellinck.utilities</groupId>
+                <artifactId>general-utilities</artifactId>
+                <version>1.15</version>
+            </dependency>
+
+            <!-- A useful utility for generating iCalendars-->
+            <dependency>
+                <groupId>org.mnode.ical4j</groupId>
+                <artifactId>ical4j</artifactId>
+                <version>1.0.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.googlecode.libphonenumber</groupId>
+                <artifactId>libphonenumber</artifactId>
+                <version>5.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.milyn</groupId>
+                <artifactId>milyn-smooks-csv</artifactId>
+                <version>1.5.1</version>
+                <!-- Needed for standalone, but conflicts with libs
+                available in Java EE environment. -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>xerces</groupId>
+                        <artifactId>xercesImpl</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javax.transaction</groupId>
+                        <artifactId>jta</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- Provides ResultSet-to-CSV support, etc -->
+            <dependency>
+                <groupId>net.sf.opencsv</groupId>
+                <artifactId>opencsv</artifactId>
+                <version>2.3</version>
+            </dependency>
+
+            <!-- Annotations for developers to express themselves -->
+            <dependency>
+                <groupId>com.google.gag</groupId>
+                <artifactId>gag</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>2.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>fop</artifactId>
+                <version>1.0</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis-ext</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sf.jasperreports</groupId>
+                <artifactId>jasperreports</artifactId>
+                <version>5.1.2</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-digester</groupId>
+                        <artifactId>commons-digester</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!--A client api for the Travellinck Approval component-->
+            <dependency>
+                <groupId>com.travellinck.approval</groupId>
+                <artifactId>approval-engine-soap-api</artifactId>
+                <version>1.0.4</version>
+            </dependency>
+
+            <!--<dependency>-->
+                <!--<groupId>org.apache.velocity</groupId>-->
+                <!--<artifactId>velocity</artifactId>-->
+                <!--<version>1.7</version>-->
+                <!--<exclusions>-->
+                    <!--<exclusion>-->
+                        <!--<groupId>commons-logging</groupId>-->
+                        <!--<artifactId>commons-logging</artifactId>-->
+                    <!--</exclusion>-->
+                    <!--<exclusion>-->
+                        <!--<groupId>javax.servlet</groupId>-->
+                        <!--<artifactId>servlet-api</artifactId>-->
+                    <!--</exclusion>-->
+                <!--</exclusions>-->
+            <!--</dependency>-->
+
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>2.3.20</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
+
+
+    <properties>
+        <!-- Standardised version number -->
+        <corporate.version>3.9</corporate.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Properties to control configuration and JBoss URLs etc. based on environment building for.
+        The following environments are specified:
+
+        'dev'         - default, running on developer machine with no firewall/proxying, port 8080/8443
+        'standalone'  - running stand-alone on a server on port 80 / 443
+        'proxied'     - accessible to clients on 80/443, but fronted (proxied) using a web
+                        server like Apache HTTPD which uses 8080/8443 to connect to web application
+        -->
+
+        <deploy.style>dev</deploy.style>
+
+        <!-- Host name used to connect to services running on local machine -->
+        <host.name.internal>localhost</host.name.internal>
+        <!-- External-facing hostname, seen by clients -->
+        <host.name.external>${host.name.internal}</host.name.external>
+
+        <!-- Ports for plain HTTP -->
+        <http.port.internal>8080</http.port.internal>
+        <http.port.external>8080</http.port.external>
+
+        <!-- Ports for HTTPS/SSL -->
+        <https.port.internal>8443</https.port.internal>
+        <https.port.external>8443</https.port.external>
+
+        <!-- Default external base URI of server (seen by clients) -->
+        <http.url.external>http://${host.name.external}:${http.port.external}</http.url.external>
+        <https.url.external>https://${host.name.external}:${https.port.external}</https.url.external>
+
+
+        <!-- Format of build timestamp injected into resources (e.g. site footer) -->
+        <maven.build.timestamp.format>EEE, d MMM yyyy HH:mm</maven.build.timestamp.format>
+        <buildTime>${maven.build.timestamp}</buildTime>
+
+        <!-- Dependency versioning -->
+        <xml-utilities-version>1.6.3</xml-utilities-version>
+        <transit-vocabulary-version>1.140.1</transit-vocabulary-version>
+        <transit-tools-version>1.85.5</transit-tools-version>
+        <arquillian.version>1.0.0.Alpha5</arquillian.version>
+
+        <!-- JBoss 7 module depedencies so we can call OSGi directly (This is currently a bit ugly) -->
+        <corporate.module.dependencies>org.osgi.core,org.jboss.osgi.framework,org.apache.commons.logging,org.apache.log4j,deployment.com.travellinck.transIT.java-api:${transit-vocabulary-version},deployment.com.travellinck.transIT.java-tools:${transit-tools-version},deployment.com.travellinck.integration.utilities.xml-utilities:${xml-utilities-version},deployment.com.travellinck.communication.gsm.sms-api:1.0.0,deployment.com.travellinck.integration.utilities.carbonEmissions:1.0.0,deployment.com.travellinck.corporate.integration:1.0.0</corporate.module.dependencies>
+
+        <!-- Emergency contact on system problems - specified here, because should be usable
+             even if DB is down, etc. Overridden below by properties. -->
+        <contact.support>development@travellinck.com</contact.support>
+    </properties>
+
+    <profiles>
+
+        <!-- Stand-alone deployment on server running on standard HTTP/HTTPS ports -->
+        <profile>
+            <id>deploy.style.standalone</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>deploy.style</name>
+                    <value>standalone</value>
+                </property>
+            </activation>
+            <properties>
+                <!-- External-facing hostname, seen by clients - this is a default, usually overridden on command-line in maven build -->
+                <host.name.external>www.travellinck.com</host.name.external>
+                <http.port.internal>80</http.port.internal>
+                <http.port.external>80</http.port.external>
+                <https.port.internal>443</https.port.internal>
+                <https.port.external>443</https.port.external>
+                <!-- Drop ports from external URLs -->
+                <http.url.external>http://${host.name.external}</http.url.external>
+                <https.url.external>https://${host.name.external}</https.url.external>
+            </properties>
+        </profile>
+
+        <!-- Proxied deployment on server running on 'developer' HTTP/HTTPS ports internally, but on standard ports externally -->
+        <profile>
+            <id>deploy.style.proxied</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>deploy.style</name>
+                    <value>proxied</value>
+                </property>
+            </activation>
+            <properties>
+                <!-- External-facing hostname, seen by clients - this is a default, usually overridden on command-line in maven build -->
+                <host.name.external>www.travellinck.com</host.name.external>
+                <http.port.internal>8080</http.port.internal>
+                <http.port.external>80</http.port.external>
+                <https.port.internal>8443</https.port.internal>
+                <https.port.external>443</https.port.external>
+                <!-- Drop ports from external URLs -->
+                <http.url.external>http://${host.name.external}</http.url.external>
+                <https.url.external>https://${host.name.external}</https.url.external>
+            </properties>
+        </profile>
+
+        <profile>
+            <!-- Generate graph (requires GraphViz) with: mvn -P graph graph:reactor -->
+            <id>graph</id>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>mvnplugins.fusesource.org</id>
+                    <url>http://mvnplugins.fusesource.org/repo/release</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </pluginRepository>
+            </pluginRepositories>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.fusesource.mvnplugins</groupId>
+                        <artifactId>maven-graph-plugin</artifactId>
+                        <version>1.4</version>
+                        <configuration>
+                            <!-- Run with "-Dhide-transitive=false" to override -->
+                            <hideTransitive>true</hideTransitive>
+                            <direction>LR</direction>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <!-- For production deployments, make support@travellinck.com the emergency contact -->
+            <id>production-support-mail</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>host.name.external</name>
+                    <value>www.travellinck.com</value>
+                </property>
+            </activation>
+            <properties>
+                <contact.support>support@travellinck.com</contact.support>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

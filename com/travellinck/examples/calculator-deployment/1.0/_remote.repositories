@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Jul 27 17:57:14 SAST 2017
+calculator-deployment-1.0.oar>=
+calculator-deployment-1.0.jar>=
+calculator-deployment-1.0.pom>=

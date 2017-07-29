@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.travellinck.integration.sync.travelport.uapi</groupId>
+  <artifactId>com.travellinck.integration.sync.travelport.uapi.adaptor</artifactId>
+  <versioning>
+    <release>1.0.0</release>
+    <versions>
+      <version>1.0</version>
+      <version>1.0.0</version>
+    </versions>
+    <lastUpdated>20150701084609</lastUpdated>
+  </versioning>
+</metadata>

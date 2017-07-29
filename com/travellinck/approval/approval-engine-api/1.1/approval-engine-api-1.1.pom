@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>approval</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.approval</groupId>
+    <artifactId>approval-engine-api</artifactId>
+    <version>1.1</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck Approval Engine API</name>
+
+    <description>
+        Services contracts and events for a generic approval system. Designed for usage in
+        a distributed computing environment (Jini/JavaSpaces).
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <!-- TODO: The n-flow "API" should be separated from the implementation -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>javaspaces-utilities</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.utilities</groupId>
+            <artifactId>general-utilities</artifactId>
+        </dependency>
+
+        <!-- RESTful web services -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0-m12</version>
+        </dependency>
+
+        <!-- Unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JPA (annotations on objects to make them persistable) -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <doclet>com.github.markusbernhardt.xmldoclet.XmlDoclet</doclet>
+                    <useStandardDocletOptions>false</useStandardDocletOptions>
+                    <docletArtifact>
+                        <groupId>com.github.markusbernhardt</groupId>
+                        <artifactId>xml-doclet</artifactId>
+                        <version>1.0.5</version>
+                    </docletArtifact>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

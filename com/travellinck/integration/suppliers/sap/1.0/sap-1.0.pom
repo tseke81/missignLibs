@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration.suppliers</groupId>
+        <artifactId>suppliers</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.suppliers</groupId>
+    <artifactId>sap</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>SAP APIs</name>
+    <description>
+        Parent for various SAP API modules. Most child modules
+        simply generate Java contracts from WSDL contracts.
+    </description>
+    <url>http://esworkplace.sap.com/</url>
+    
+    <modules>
+        <module>sap-es-employee-api</module>
+        <module>sap-es-cost-centre-api</module>
+    </modules>
+
+</project>

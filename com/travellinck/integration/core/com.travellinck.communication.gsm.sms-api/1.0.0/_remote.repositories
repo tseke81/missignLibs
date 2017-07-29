@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Jul 01 12:03:10 SAST 2015
+com.travellinck.communication.gsm.sms-api-1.0.0.jar>=
+com.travellinck.communication.gsm.sms-api-1.0.0.pom>=

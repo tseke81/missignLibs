@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <parent>
+    <groupId>com.travellinck.integration.suppliers.mastercard</groupId>
+    <artifactId>mastercard</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.travellinck.integration.suppliers.mastercard</groupId>
+  <artifactId>mastercard-contract</artifactId>
+  <version>1.0.0</version>
+
+  <name>mastercard-contract</name>
+  <!--<url>http://maven.apache.org</url>-->
+  <description>
+    Generated API codes for Mastercard inControl
+  </description>
+
+  <dependencies>
+    <!-- Unit testing -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-sources</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <build>
+        <plugins>
+          <!-- Configuration to compile all schemas in the
+         resources/schemas directory. Automatically
+         invoked during the 'generate-sources' phase -->
+          <plugin>
+            <groupId>org.jvnet.jaxb2.maven2</groupId>
+            <artifactId>maven-jaxb2-plugin</artifactId>
+            <version>0.9.0</version>
+            <executions>
+              <execution>
+                <id>mainSchemas</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <configuration>
+                  <episodeFile>target/mainSchemas.episode</episodeFile>
+                  <schemaDirectory>src/main/resources</schemaDirectory>
+                  <schemaIncludes>
+                    <include>*.xsd</include>
+                  </schemaIncludes>
+
+                  <!--<generateDirectory>target/generated-sources/xjc</generateDirectory>-->
+                  <!--<generatePackage>com.websystique.xml.workflow</generatePackage>-->
+
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+  </profiles>
+
+</project>

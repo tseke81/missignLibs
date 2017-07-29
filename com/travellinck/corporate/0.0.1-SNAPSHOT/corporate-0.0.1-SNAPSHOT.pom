@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.travellinck</groupId>
+	<artifactId>corporate</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>corporate</name>
+	<description>REST API based on version 3.10 of the Travellinck CorporateBusinessModel</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.4.RELEASE</version>
+		<relativePath/> 																			<!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.7</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- General Java utilities (mostly date/time etc) -->
+		<!-- Note: This is not an OSGi module, it's bundled with -->
+		<dependency>
+			<groupId>com.travellinck.utilities</groupId>
+			<artifactId>general-utilities</artifactId>
+			<version>1.18</version>
+		</dependency>
+
+		<!--Travellinck toolkit-->
+		<dependency>
+			<groupId>com.travellinck.integration.utilities</groupId>
+			<artifactId>com.travellinck.transIT.java-tools</artifactId>
+			<version>1.94.0</version>
+		</dependency>
+
+		<!--Travellinck vocabulary-->
+		<dependency>
+			<groupId>com.travellinck.integration.vocabulary</groupId>
+			<artifactId>com.travellinck.transIT.java-api</artifactId>
+			<version>1.153.0</version>
+		</dependency>
+
+		<!--Travellinck XML utilities-->
+		<dependency>
+			<groupId>com.travellinck.integration.utilities</groupId>
+			<artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+
+		<!--Travellinck approval component client API-->
+		<dependency>
+			<groupId>com.travellinck.approval</groupId>
+			<artifactId>approval-engine-soap-api</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+
+		<!--Carbon emissions broker-->
+		<dependency>
+			<groupId>com.travellinck.integration.utilities</groupId>
+			<artifactId>com.travellinck.integration.utilities.carbonEmissions</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.travellinck.integration.utilities</groupId>
+			<artifactId>travellinck-testing-utilities</artifactId>
+			<version>0.3.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.gag</groupId>
+			<artifactId>gag</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+
+	<profile>
+		<id>wsimport</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+		<build>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jaxws-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>wsimport</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<wsdlUrls>
+							<wsdlUrl>${basedir}/src/main/resources/contracts/travellinck-reconcilliation.wsdl</wsdlUrl>
+							<wsdlUrl>${basedir}/src/main/resources/contracts/shortenurl/shortenurl-soap.wsdl</wsdlUrl>
+							<wsdlUrl>${basedir}/src/main/resources/contracts/session-verification/session-verification-soap.wsdl</wsdlUrl>
+						</wsdlUrls>
+						<sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+						<sei/>
+					</configuration>
+				</plugin>
+			</plugins>
+		</build>
+	</profile>
+	</profiles>
+
+
+</project>

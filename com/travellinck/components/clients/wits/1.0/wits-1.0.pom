@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck.components</groupId>
+        <artifactId>clients</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.components.clients</groupId>
+    <artifactId>wits</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Client: Wits University (parent)</name>
+    <description>
+        Project root of all components that provide Wits-mutual-specific
+        functionality.
+    </description>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Version of the Old Mutual Integration API we're using in all sub-components -->
+            <dependency>
+                <groupId>com.travellinck.components.clients.com.oldmutual</groupId>
+                <artifactId>integration-api</artifactId>
+                <version>1.3</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>integration-api</module>
+    </modules>
+    
+</project>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.components.clients</groupId>
+        <artifactId>oldmutual</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.components.clients.com.oldmutual</groupId>
+    <artifactId>integration-components</artifactId>
+    <version>1.1.3</version>
+    <packaging>jar</packaging>
+
+    <name>Old Mutual Oracle Integration Components</name>
+    <description>
+        A set of adaptor components that integrate to Old Mutual Systems
+        (Oracle, via custom services defined by the oracle-integration-api)
+        which may be instantiated and wired together in deployments such as
+        the Travellinck Approval Engine.
+    </description>
+
+    <dependencies>
+        <!-- Old Mutual API -->
+        <dependency>
+            <groupId>com.travellinck.components.clients.com.oldmutual</groupId>
+            <artifactId>integration-api</artifactId>
+        </dependency>
+
+        <!-- TL Framework(s) -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>javaspaces-utilities</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.utilities</groupId>
+            <artifactId>general-utilities</artifactId>
+        </dependency>
+
+        <!--  Utilities to schedule the publishing of Entries in JavaSpace at some future time   -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>scheduling-api</artifactId>
+        </dependency>
+
+        <!-- TL Approval engine API -->
+        <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-api</artifactId>
+        </dependency>
+
+        <!-- TransIT API -->
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+        </dependency>
+        <!-- Tools -->
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.transIT.java-tools</artifactId>
+        </dependency>
+
+        <!-- CDI dependency injection -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.libphonenumber</groupId>
+            <artifactId>libphonenumber</artifactId>
+        </dependency>
+
+        <!-- Unit and integration testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-components</artifactId>
+        </dependency>
+
+        <!-- SLF4J Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.travellinck.communication</groupId>
+            <artifactId>email-api</artifactId>
+        </dependency>
+
+        <!-- JavaMail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.5</version>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <!-- Do integration testing on-demand only -->
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Integration test(s) -->
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <forkMode>once</forkMode>
+                            <argLine>-DRIO_TEST_ATTACH</argLine>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

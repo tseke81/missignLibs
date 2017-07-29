@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Jul 13 18:13:58 SAST 2017
+com.travellinck.integration.core.persistence-1.0.1.jar>=
+com.travellinck.integration.core.persistence-1.0.1.pom>=

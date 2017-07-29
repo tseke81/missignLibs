@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.components.clients</groupId>
+        <artifactId>nedbank</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.components.clients.za.co.nedbank</groupId>
+    <artifactId>p2p-api</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Nedbank P2P Requisition API</name>
+
+    <description>
+        Defines the public data structures and contracts (entries) that are required for a space-based
+        implementation of a worker that performs Nedbank P2P e-mail-based requisition.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.communication</groupId>
+            <artifactId>email-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>scheduling-api</artifactId>
+        </dependency>
+        <!-- n-flow API (+impl) -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>javaspaces-utilities</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    
+</project>

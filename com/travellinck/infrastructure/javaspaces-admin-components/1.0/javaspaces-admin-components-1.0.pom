@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>infrastructure</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.infrastructure</groupId>
+    <artifactId>javaspaces-admin-components</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>JavaSpaces Administration Components</name>
+    <description>
+        Implementation of the spaces admin API
+    </description>
+
+
+    <dependencies>
+        <!-- Rio / Jini -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-lib</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- API we're implementing -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>javaspaces-admin-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- Object manipulation utilities -->
+        <dependency>
+            <groupId>net.sf.sojo</groupId>
+            <artifactId>sojo</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+
+        <!-- TODO: Temporary dependencies so we can read entries that don't have
+         a public codebase (bad!!!) -->
+        <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-components-dl</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>scheduling-components</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.components.suppliers.com.clickatell</groupId>
+            <artifactId>gsm-sms-adaptor</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.communication</groupId>
+            <artifactId>email-api</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
+        <!-- Unit and integration testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- SLF4J Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Stuff used in testing -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <profiles>
+        <!-- Do integration testing on-demand only -->
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Integration test(s) -->
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <forkMode>once</forkMode>
+                            <argLine>-DRIO_TEST_ATTACH</argLine>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>

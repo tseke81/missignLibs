@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>approval</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.approval</groupId>
+    <artifactId>approval-engine-components</artifactId>
+    <version>1.1.10</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck Approval Engine Components</name>
+
+    <description>
+        A library of components that can be wired together to deploy a general approval engine
+        based on client requirements. May require standard infrastructure services (e.g. transaction
+        manager, java space) as well as other Travellinck core components (mail and SMS sending, etc).
+    </description>
+
+    <dependencies>
+
+        <!-- Service Contract / Public codebase we implement -->
+        <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-components-dl</artifactId>
+        </dependency>
+
+        <!--  Utilities to schedule the publishing of Entries in JavaSpace at some future time   -->
+        <!-- Due to complexities with class loading in deeply nested scheduled objects, this has been
+            moved into the approval system as a whole. While this is very messy, it addresses an immediate
+            production problem, with time to be scheduled to re-examine and componentise later. -->
+        <!--<dependency>-->
+            <!--<groupId>com.travellinck.infrastructure</groupId>-->
+            <!--<artifactId>scheduling-api</artifactId>-->
+        <!--</dependency>-->
+
+        <!-- Core Jini types -->
+        <dependency>
+            <groupId>net.jini</groupId>
+            <artifactId>jini-core</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <!-- Rio / Jini infrastructure -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-lib</artifactId>
+        </dependency>
+
+        <!-- TL Framework(s) -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>javaspaces-utilities</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.utilities</groupId>
+            <artifactId>general-utilities</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.communication</groupId>
+            <artifactId>email-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.communication</groupId>
+    		<artifactId>gsm-sms-api</artifactId>
+        </dependency>
+
+        <!-- Payment API -->
+        <dependency>
+            <groupId>com.travellinck.payment</groupId>
+            <artifactId>payment-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.payment</groupId>
+            <artifactId>payment-components</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Validation -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <!-- ... and reference implementation -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+   		<!-- JavaMail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
+
+        <!-- HTML parser -->
+		<dependency>
+			<groupId>net.htmlparser.jericho</groupId>
+			<artifactId>jericho-html</artifactId>
+		</dependency>
+
+        <!-- Transaction service (for manual space workers) -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>transaction-api</artifactId>
+        </dependency>
+
+        <!-- Unit and integration testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.2.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Used for XML marshalling testing, etc (no real dependency) -->
+        <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-soap-api</artifactId>
+            <version>1.0.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- CDI API -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+
+        <!-- JPA -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+        </dependency>
+
+        <!-- Java DB in memory database for testing persistence -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.9.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.9.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbynet</artifactId>
+            <version>10.9.1.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Postgresql JDBC driver -->
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
+        <!-- SLF4J Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <!-- Only for testing purposes, Rio provides SLF4J binding at runtime -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Always do unit testing -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemProperties>
+                        <!-- Send any Derby output to the target directory otherwise it ends up in root dir. May want to move this to root pom if used in any other places -->
+                        <property>
+                            <name>derby.stream.error.file</name>
+                            <value>target/derby.log</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <doclet>com.github.markusbernhardt.xmldoclet.XmlDoclet</doclet>
+                    <useStandardDocletOptions>false</useStandardDocletOptions>
+                    <docletArtifact>
+                        <groupId>com.github.markusbernhardt</groupId>
+                        <artifactId>xml-doclet</artifactId>
+                        <version>1.0.5</version>
+                    </docletArtifact>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Do integration testing on-demand only -->
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <systemProperties>
+                                <!-- Send any Derby output to the target directory otherwise it ends up in root dir. May want to move this to root pom if used in any other places -->
+                                <property>
+                                    <name>derby.system.home</name>
+                                    <value>target/</value>
+                                </property>
+                                <!--<property>-->
+                                    <!--<name>derby.stream.error.file</name>-->
+                                    <!--<value>derby.log</value>-->
+                                <!--</property>-->
+                            </systemProperties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

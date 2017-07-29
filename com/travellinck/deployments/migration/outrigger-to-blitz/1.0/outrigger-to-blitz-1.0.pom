@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck.deployments</groupId>
+        <artifactId>migration</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.deployments.migration</groupId>
+    <artifactId>outrigger-to-blitz</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Migrates Outrigger data to Blitz (with 'special' dependencies)</name>
+
+    <modules>
+        <module>migration-service</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <!-- RIO plugin to generate high-level opstring (deployment) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-rio-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>build-oar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>oar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <opstring>src/main/opstring/deployment.groovy</opstring>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- This is a RIO deployment -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-platform</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+</project>

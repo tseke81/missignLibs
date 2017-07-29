@@ -1,0 +1,76 @@
+<project xmlns = "http://maven.apache.org/POM/4.0.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.travellinck.utilities</groupId>
+    <artifactId>general-utilities</artifactId>
+    <version>1.12</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck General Utilites</name>
+    <description>
+        General utilities pertaining to Java SE, such as object creation, date/time manipulation, etc.
+        The utilities in here should not have dependencies beyond standard Java SE.
+    </description>
+    <url>http://www.travellinck.com</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock</artifactId>
+            <version>2.5.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.9.1.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <developers>
+        <developer>
+            <name>Dawid Loubser</name>
+            <email>dawid@travellinck.com</email>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <organization>Travellinck (Pty) Ltd</organization>
+        </developer>
+    </developers>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>travellinck-distribution</id>
+            <name>Travelinck Maven2 Repository</name>
+            <url>http://repo.travellinck.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>travellinck-distribution</id>
+            <name>Travelinck Maven2 Repository</name>
+            <url>http://repo.travellinck.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+</project>

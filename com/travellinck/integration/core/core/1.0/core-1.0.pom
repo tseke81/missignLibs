@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.travellinck.integration.core</groupId>
+  <artifactId>core</artifactId>
+  <version>1.0</version>
+
+  <packaging>pom</packaging>
+
+  <name>Core Modules</name>
+
+  <description>Modules that are independent of suppliers,
+      that offer core or generic functionality.</description>
+
+  <modules>
+    <module>com.travellinck.integration.core.availability</module>
+    <module>com.travellinck.integration.core.booking</module>
+    <module>com.travellinck.integration.core.cancellation</module>
+    <module>com.travellinck.integration.core.payment</module>
+    <module>com.travellinck.integration.core.credentials</module>
+    <module>com.travellinck.integration.core.persistence</module>
+    <module>com.travellinck.integration.core.accommodation.manager</module>
+    <module>com.travellinck.integration.core.serviceProvider.directory</module>
+    <module>com.travellinck.integration.core.voucher.manager</module>
+    <module>com.travellinck.corporate.integration</module>
+    <module>com.travellinck.integration.core.airportdirectory</module>
+    <module>com.travellinck.integration.core.sync</module>
+    <module>com.travellinck.integration.core.sync.filter-api</module>
+    <module>com.travellinck.communication.email-api</module>
+    <module>com.travellinck.communication.email</module>
+    <module>com.travellinck.integration.core.idmapping</module>
+    <module>com.travellinck.integration.core.sync.filter</module>
+    <module>com.travellinck.integration.core.vehiclehiredepots</module>
+    <module>com.travellinck.integration.core.purchase.control.directory</module>
+    <module>com.travellinck.integration.core.border.classification</module>
+    <module>com.travellinck.integration.core.companyserviceproviderprefs</module>
+  </modules>
+
+</project>

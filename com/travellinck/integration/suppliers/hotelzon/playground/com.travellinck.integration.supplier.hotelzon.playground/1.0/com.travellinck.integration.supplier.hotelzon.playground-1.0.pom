@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration.suppliers.hotelzon</groupId>
+        <artifactId>hotelzon</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <properties>
+        <bundle.name>HotelZon Playground</bundle.name>
+        <bundle.symbolicName>com.travellinck.supplier.playground.hotelzon</bundle.symbolicName> <!-- Matches Java package -->
+        <bundle.namespace>com.travellinck.supplier.playground.hotelzon</bundle.namespace>
+    </properties>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.suppliers.hotelzon.playground</groupId>
+    <artifactId>com.travellinck.integration.supplier.hotelzon.playground</artifactId>
+    <version>1.0</version>
+
+    <name>HotelZon Stand-Alone Test (Playground)</name>
+    <description>
+        A stand-alone project that experiments with the (new) HotelZon
+        service using the generated Java API.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.suppliers.hotelzon</groupId>
+            <artifactId>hotelzon-contract</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.transIT.java-tools</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.supplier-utilities</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- Filter OSGi configs (set values based on maven properties) -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

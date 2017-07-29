@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>infrastructure</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.infrastructure</groupId>
+    <artifactId>web-services-binding-api</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck Remote/Web Services Binding API</name>
+
+    <description>
+        Configuration and metatadata to apply to Rio/Jini services
+        that wish to be exposed as web services (SOAP/REST/JSON).
+        Very much in the same spirit as distributed OSGi, a JINI
+        service publishes metadata (in the form of entries specified
+        by this project) which is then detected and "wired up" to a
+        web services container by an external services.
+    </description>
+
+
+
+    <dependencies>
+        <!-- May depend on core Jini types (this is a remote-able contract) -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+    </dependencies>
+    
+</project>

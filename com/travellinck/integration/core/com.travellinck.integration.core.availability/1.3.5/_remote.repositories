@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Aug 23 14:29:39 SAST 2016
+com.travellinck.integration.core.availability-1.3.5.jar>=
+com.travellinck.integration.core.availability-1.3.5.pom>=

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.travellinck.corporate</groupId>
+        <artifactId>clients</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>com.travellinck.corporate.clients</groupId>
+    <artifactId>nedbank</artifactId>
+    <version>1.0</version>
+    <packaging>ejb</packaging>
+    <name>Client-specific: Nedbank</name>
+    <description>
+        Components that facilitate Nedbank-specific needs.
+    </description>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.travellinck</groupId>
+            <artifactId>corporateBusinessModel</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Used to make calls to a SAP endpoint for profile integration -->
+        <dependency>
+            <groupId>com.travellinck.integration.suppliers.sap</groupId>
+            <artifactId>sap-es-employee-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- Used to make calls to a SAP endpoint for cost centre integration -->
+        <dependency>
+            <groupId>com.travellinck.integration.suppliers.sap</groupId>
+            <artifactId>sap-es-cost-centre-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!--Travellinck toolkit-->
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.transIT.java-tools</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck vocabulary-->
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck XML utilities-->
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifestEntries>
+                            <!-- Dependencies on logging stuff (provided by environment) and OSGi integration layer modules -->
+                            <Dependencies>${corporate.module.dependencies}</Dependencies>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+

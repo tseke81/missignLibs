@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.components</groupId>
+        <artifactId>core</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck</groupId>
+    <artifactId>infrastructure</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Travellinck Infrastructure Components</name>
+    <description>
+        Project root of all Travellinck components focusing on providing infrastructure
+        services. Examples include: Transaction management, Scheduling services,
+        programming style libraries, etc.
+    </description>
+
+    <modules>
+        <module>transaction-api</module>
+        <module>transaction-components</module>
+        <module>javaspaces-utilities</module>
+        <module>scheduling-api</module>
+        <module>scheduling-components</module>
+        <module>web-services-binding-api</module>
+        <module>web-services-binding-components</module>
+        <module>logging-utilities</module>
+        <module>javaspaces-admin-api</module>
+        <module>javaspaces-admin-components</module>
+    </modules>
+    
+</project>

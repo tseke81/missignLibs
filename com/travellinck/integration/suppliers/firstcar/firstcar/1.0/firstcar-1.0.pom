@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+        <groupId>com.travellinck.integration</groupId>
+        <artifactId>travellinck-osgi-bom</artifactId>
+        <version>1.0</version>
+        <relativePath></relativePath>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.travellinck.integration.suppliers.firstcar</groupId>
+	<artifactId>firstcar</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>FirstCar Integration Projects</name>
+
+	<modules>
+		<module>firstcar-contract</module>
+		<module>com.travellinck.integration.supplier.firstcar.adaptor</module>
+  </modules>
+
+</project>

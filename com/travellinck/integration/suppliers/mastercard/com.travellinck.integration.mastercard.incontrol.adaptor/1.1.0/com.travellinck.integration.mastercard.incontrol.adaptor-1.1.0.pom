@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <parent>
+    <groupId>com.travellinck.integration.suppliers.mastercard</groupId>
+    <artifactId>mastercard</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <properties>
+    <bundle.name>Supplier adaptor: MasterCard inControl</bundle.name>
+    <bundle.symbolicName>com.travellinck.adaptor.mastercard.incontrol</bundle.symbolicName> <!-- Matches Java package -->
+    <bundle.namespace>${bundle.symbolicName}</bundle.namespace>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.travellinck.integration.suppliers.mastercard</groupId>
+  <artifactId>com.travellinck.integration.mastercard.incontrol.adaptor</artifactId> <!-- Matches dir name -->
+  <version>1.1.0</version>
+  <packaging>bundle</packaging>
+
+  <name>${bundle.name} [osgi]</name>
+  <description>
+    Adapts the semantics of the supplier service to Travellinck's.
+  </description>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi_R4_core</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi_R4_compendium</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.travellinck.integration.vocabulary</groupId>
+      <artifactId>com.travellinck.transIT.java-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.travellinck.integration.utilities</groupId>
+      <artifactId>com.travellinck.transIT.java-tools</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.travellinck.integration.utilities</groupId>
+      <artifactId>com.travellinck.integration.utilities.supplier-utilities</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.travellinck.integration.utilities</groupId>
+      <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!-- JPA start -->
+    <!--<dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>javax.persistence</artifactId>
+      <version>2.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>javax.transaction-api</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
+      <version>5.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.aries.jpa</groupId>
+      <artifactId>org.apache.aries.jpa.api</artifactId>
+      <version>2.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.cdi</groupId>
+      <artifactId>pax-cdi-api</artifactId>
+      <version>0.12.0</version>
+    </dependency>-->
+    <!-- JPA end -->
+
+    <!-- Custom console command (Karaf shell) -->
+    <dependency>
+      <groupId>org.apache.karaf.shell</groupId>
+      <artifactId>org.apache.karaf.shell.console</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!-- Unit testing -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jmock</groupId>
+      <artifactId>jmock-junit4</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.travellinck.integration.utilities</groupId>
+      <artifactId>travellinck-testing-utilities</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.travellinck.integration.suppliers.mastercard</groupId>
+      <artifactId>mastercard-contract</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+</dependencies>
+
+  <build>
+    <resources>
+      <!-- Filter OSGi configs (set values based on maven properties) -->
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.*</include>
+        </includes>
+        <!--<filtering>true</filtering>-->
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.ops4j</groupId>
+        <artifactId>maven-pax-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+            <Bundle-Version>${project.version}</Bundle-Version>
+            <Export-Package>
+              com.travellinck.adaptor.mastercard.security.*,
+              !com.travellinck.adaptor.mastercard.incontrol.*
+            </Export-Package>
+            <!--<Import-Package>
+              org.hibernate.proxy,
+              javassist.util.proxy,
+              !javax.microedition.io,
+              *
+            </Import-Package>-->
+            <Private-Package>
+              com.travellinck.adaptor.mastercard.incontrol.*
+            </Private-Package>
+
+            <Service-Component>OSGI-INF/component.xml</Service-Component>
+            <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+
+            <!-- Only needed for the persistence bundle containing the jpa Entities -->
+            <!--<Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>-->
+            <!-- Needed for runtime enhancement when using hibernate -->
+            <!--<Dynamic-Import-Package>*, org.hibernate.proxy, javassist.util.proxy</Dynamic-Import-Package>-->
+
+            <!-- Karaf shell command to lock / unlock the mastercard client keys -->
+            <Karaf-Commands>*</Karaf-Commands>
+
+          </instructions>
+        </configuration>
+
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+</project>

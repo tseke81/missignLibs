@@ -1,0 +1,8 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Mon Oct 31 12:32:05 SAST 2016
+http\://repo.maven.apache.org/maven2/.lastUpdated=1477909925527
+https\://repository.jboss.org/nexus/content/groups/public-jboss/.error=
+http\://download.java.net/maven/glassfish/.lastUpdated=1477909925074
+https\://repository.jboss.org/nexus/content/groups/public-jboss/.lastUpdated=1477909923798
+http\://download.java.net/maven/glassfish/.error=
+http\://repo.maven.apache.org/maven2/.error=

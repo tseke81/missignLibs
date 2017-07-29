@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>communication</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.communication</groupId>
+    <artifactId>email-components</artifactId>
+    <version>1.3</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck E-Mail Components</name>
+
+    <description>
+        A space-based implementation of the E-Mail send/receive API, which may be
+        provisioned as services in RIO.
+    </description>
+
+    <dependencies>
+        <!-- May depend on core Jini types (this is a remote-able contract) -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-lib</artifactId>
+        </dependency>
+
+        <!-- CDI -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+
+        <!-- API we are implementing -->
+        <dependency>
+            <groupId>com.travellinck.communication</groupId>
+            <artifactId>email-api</artifactId>
+            <version>1.2</version>
+        </dependency>
+        
+         <!-- Travellinck JavaSpaces helpers -->
+         <dependency>
+             <groupId>com.travellinck.infrastructure</groupId>
+             <artifactId>javaspaces-utilities</artifactId>
+         </dependency>
+
+        <!-- Scheduling API -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>scheduling-api</artifactId>
+        </dependency>
+
+        <!-- JavaMail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.5</version>
+        </dependency>
+
+        <!-- General utilities -->
+        <dependency>
+            <groupId>com.travellinck.utilities</groupId>
+            <artifactId>general-utilities</artifactId>
+        </dependency>
+
+        <!-- Unit and integration testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Fake SMTP server for testing -->
+        <dependency>
+            <groupId>dumbster</groupId>
+            <artifactId>dumbster</artifactId>
+            <version>1.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Embedded POP/SMTP server for testing  mail send/receive -->
+        <dependency>
+            <groupId>com.icegreen</groupId>
+            <artifactId>greenmail</artifactId>
+            <version>1.3.1b</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- SLF4J Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+    </dependencies>
+
+    <profiles>
+        <!-- Do integration testing on-demand only -->
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Integration test(s) -->
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <forkMode>once</forkMode>
+                            <argLine>-DRIO_TEST_ATTACH</argLine>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <doclet>com.github.markusbernhardt.xmldoclet.XmlDoclet</doclet>
+                    <useStandardDocletOptions>false</useStandardDocletOptions>
+                    <docletArtifact>
+                        <groupId>com.github.markusbernhardt</groupId>
+                        <artifactId>xml-doclet</artifactId>
+                        <version>1.0.5</version>
+                    </docletArtifact>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>

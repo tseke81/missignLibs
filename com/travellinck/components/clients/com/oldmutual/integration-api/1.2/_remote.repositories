@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Apr 07 13:46:45 SAST 2014
+integration-api-1.2.jar>=
+integration-api-1.2.pom>=

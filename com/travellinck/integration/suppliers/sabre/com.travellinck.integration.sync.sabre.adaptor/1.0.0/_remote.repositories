@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Fri Aug 12 13:25:53 SAST 2016
+com.travellinck.integration.sync.sabre.adaptor-1.0.0.jar>=
+com.travellinck.integration.sync.sabre.adaptor-1.0.0.pom>=

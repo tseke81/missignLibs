@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>corporate</artifactId>
+        <version>3.9</version>
+    </parent>
+
+
+	<artifactId>corporateBusinessModel</artifactId>
+	<packaging>ejb</packaging>
+	<name>Travellinck :: Corporate business model</name>
+	<url>http://www.travellinck.com</url>
+	<description>Travellinck corporate business model.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.travellinck.integration.core</groupId>
+            <artifactId>com.travellinck.communication.gsm.sms-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Traveller & Trip creation-->
+        <dependency>
+            <groupId>com.travellinck.integration.core</groupId>
+            <artifactId>com.travellinck.corporate.integration</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <!-- Note: Must be specified BEFORE Java EE 6 API, otherwise unit testing fails because
+                 the javaee-api (which contains no method or annotation bodies) is loaded at unit test time -->
+            <groupId>org.glassfish.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck toolkit-->
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.transIT.java-tools</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck vocabulary-->
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck XML utilities-->
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck approval component client API-->
+        <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-soap-api</artifactId>
+        </dependency>
+
+        <!--Carbon emissions broker-->
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.carbonEmissions</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ow2.spec.ee</groupId>
+            <artifactId>ow2-ejb-3.1-spec</artifactId>
+            <version>1.0.8</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- A testing framework for in container testing which we use for testing ejb 3 primarily -->
+        <dependency>
+            <groupId>org.jboss.arquillian</groupId>
+            <artifactId>arquillian-junit</artifactId>
+            <version>${arquillian.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- In memory database for testing -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ostermiller</groupId>
+            <artifactId>utils</artifactId>
+            <version>1.07.00</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sourceforge.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>9.1.0.8</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.thebuzzmedia</groupId>
+            <artifactId>imgscalr-lib</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+            <exclusions>
+                <exclusion>
+                    <!-- Provided by container -->
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--  TravelTalk Java Contract -->
+        <dependency>
+            <groupId>com.travellinck.integration.suppliers.traveltalk</groupId>
+            <artifactId>traveltalk-contract</artifactId>
+        </dependency>
+
+
+        <!-- TODO: Remove this asap (view layer) -->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- TODO: Remove this (bundled JavaMail implementation) as soon as JBoss 7 supports JavaMail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.4</version>
+            <!-- Java SE 6 already provides JAF, don't re-bundle -->
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- We call integration layer via OSGi -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_core</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_compendium</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Using (unfortunately) proprietary JBOss services stuff -->
+        <dependency>
+            <groupId>org.jboss.msc</groupId>
+            <artifactId>jboss-msc</artifactId>
+            <version>1.0.1.GA</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- Old Mutual integration -->
+        <dependency>
+            <groupId>com.travellinck.components.clients.com.oldmutual</groupId>
+            <artifactId>integration-api</artifactId>
+            <version>1.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.owlike</groupId>
+                    <artifactId>genson</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.libphonenumber</groupId>
+            <artifactId>libphonenumber</artifactId>
+        </dependency>
+
+        <!-- A useful utility for generating iCalendars-->
+        <dependency>
+            <groupId>org.mnode.ical4j</groupId>
+            <artifactId>ical4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.travellinck.utilities</groupId>
+            <artifactId>general-utilities</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.milyn</groupId>
+            <artifactId>milyn-smooks-csv</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+        <!-- Used to generate CSV from ResultSet, etc -->
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gag</groupId>
+            <artifactId>gag</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>fop</artifactId>
+        </dependency>
+
+        <dependency>
+            <!-- Used in dynamic expressions, e.g. in simple reporting framework -->
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-jexl</artifactId>
+            <version>2.1.1</version>
+            <!-- TODO: Exclude commons logging? -->
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+
+        <!--REMOVE only in because of ItnelliJ dependency problem-->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-jpamodelgen</artifactId>-->
+            <!--<version>1.2.0.Final</version>-->
+        <!--</dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                  <source>1.7</source>
+                  <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifestEntries>
+                            <!-- Dependencies on logging stuff (provided by environment) and OSGi integration layer modules -->
+                            <Dependencies>${corporate.module.dependencies}</Dependencies>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- Used to generate the static JPA metamodel, which helps when formulating strongly-typed
+            JPA queries using the criteria API -->
+            <plugin>
+                <groupId>org.bsc.maven</groupId>
+                <artifactId>maven-processor-plugin</artifactId>
+                <version>2.0.5</version>
+                <executions>
+                    <execution>
+                        <id>process</id>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <processors>
+                                <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                            </processors>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-jpamodelgen</artifactId>
+                        <version>1.2.0.Final</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+        <resources>
+            <!-- All resources for which we do not want filtering -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>*.properties</exclude>
+                </excludes>
+            </resource>
+            <!-- All resources for which we do want filtering -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>target/jaxws</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+        <!-- TODO: Set up automatic synchronisation of TransIT XSLT library to /src/main/resources/utility/xslt/transIT -->
+    </build>
+
+	<profiles>
+
+		<profile>
+			<id>wsimport</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>jaxws-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>wsimport</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>${basedir}/src/main/resources/contracts/travellinck-reconcilliation.wsdl</wsdlUrl>
+								<wsdlUrl>${basedir}/src/main/resources/contracts/shortenurl/shortenurl-soap.wsdl</wsdlUrl>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/session-verification/session-verification-soap.wsdl</wsdlUrl>
+                            </wsdlUrls>
+							<sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+                            <sei/>
+                        </configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+
+
+        <!--Profile for the glassfish embedded container so that we can do in conainer testing for EJB, etc using the arquillian framework -->
+        <profile>
+            <id>glassfish-embedded-3.1</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+                    <version>${arquillian.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <!-- Needed?
+                <dependency>
+                    <groupId>org.glassfish.extras</groupId>
+                    <artifactId>glassfish-embedded-all</artifactId>
+                    <version>3.1</version>
+                    <scope>test</scope>
+                </dependency>
+                -->
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/resources-glassfish-embedded</directory>
+                    </testResource>
+                </testResources>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <!-- don't use version 2.5 as it creates seperate test suites per class -->
+                        <version>2.4.3</version>
+                        <configuration>
+                            <argLine>-Dapp.profile=GLASSFISH -Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true</argLine>
+                            <forkMode>once</forkMode>
+                            <useSystemClassLoader>true</useSystemClassLoader>
+                            <systemProperties>
+                                <!-- This optional property fixes an annoyance with Glassfish that puts derby.log in the project
+                                        root -->
+                                <property>
+                                    <name>derby.stream.error.file</name>
+                                    <!-- If you save the log in target it is less likely to get committed in your project -->
+                                    <value>target/derby.log</value>
+                                </property>
+                            </systemProperties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+</project>

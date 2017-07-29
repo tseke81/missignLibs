@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.travellinck.corporate</groupId>
+        <artifactId>clients</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>com.travellinck.corporate.clients</groupId>
+    <artifactId>oldmutual</artifactId>
+    <version>1.0</version>
+    <packaging>ejb</packaging>
+    <name>Client-specific: Old Mutual</name>
+    <description>
+        Components that facilitate Old Mutual-specific needs.
+    </description>
+
+    <!-- TODO: Move Old Mutual components (from CorporateBusinessModel) here, after
+             refactoring to not directly use entities - but services instead. -->
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.travellinck</groupId>
+            <artifactId>corporateBusinessModel</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
+

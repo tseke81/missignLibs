@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>gds</artifactId>
+    <groupId>com.travellinck.integration.suppliers.gds</groupId>
+    <version>1.0.0</version>
+  </parent>
+  <groupId>com.travellinck.integration.suppliers.gds</groupId>
+  <artifactId>com.travellinck.supplier.gds.remarks.api</artifactId>
+  <version>1.0.0</version>
+  <packaging>bundle</packaging>
+  
+  <name>GDS Remarks (Accounting entries) API</name>
+  <description>
+  	API for a service that produces accounting remarks relevant
+    to various Travellinck trip-related events, agnostic of paticular
+    GDS implementations (e.g. Sabre, Galileo, Amadeus...)
+  </description>
+
+  <dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <scope>test</scope>
+    </dependency>
+      <dependency>
+          <groupId>com.travellinck.integration.vocabulary</groupId>
+          <artifactId>com.travellinck.transIT.java-api</artifactId>
+          <scope>provided</scope>
+      </dependency>
+  </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Export-Package>com.travellinck.supplier.gds.remarks.*</Export-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

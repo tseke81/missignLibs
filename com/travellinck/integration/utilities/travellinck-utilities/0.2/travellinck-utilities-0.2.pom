@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.utilities</groupId>
+    <artifactId>travellinck-utilities</artifactId>
+    <version>0.2</version>
+    <packaging>pom</packaging>
+
+    <name>Travellinck Utilities</name>
+    <description>
+        General-use utility components that are not ties to any particular business domain, such
+        as XML processing, I/O, etc. Each utility sub-project must be a stand-alone module
+        (i.e. does not depend on deployment into a particular environment)
+        which can easily be included into any other module, deployed in any reasonable
+        environment.
+    </description>
+
+    <modules>
+        <module>xml-utilities</module>
+        <module>testing-utilities</module>
+        <module>util_java_indexed_properties</module>
+        <module>object-renderer</module>
+        <module>csv-tools</module>
+        <module>general-utilities</module>
+        <module>public-holidays</module>
+        <module>jaxws-rmi-compatability-maven-plugin</module>
+    </modules>
+
+
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.travellinck.integration.suppliers</groupId>
+		<artifactId>suppliers</artifactId>
+		<version>1.0</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.travellinck.integration.suppliers.bookingcenter</groupId>
+	<artifactId>bookingcenter</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	
+
+	<name>Booking Center Integration Projects</name>
+
+	<modules>
+		<module>bookingcenter-contract</module>
+		<module>com.travellinck.integration.supplier.bookingcenter.adaptor</module>
+  </modules>
+
+</project>

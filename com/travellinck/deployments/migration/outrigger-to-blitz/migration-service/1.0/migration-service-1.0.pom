@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck.deployments.migration</groupId>
+        <artifactId>outrigger-to-blitz</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.deployments.migration.outrigger-to-blitz</groupId>
+    <artifactId>migration-service</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Migration service</name>
+
+    <dependencies>
+        <!-- This is a RIO deployment -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-lib</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!-- Vocabs we need to understand otherwise unusable entries (bad!!) -->
+        <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-components-dl</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>scheduling-components</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.components.suppliers.com.clickatell</groupId>
+            <artifactId>gsm-sms-adaptor</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.communication</groupId>
+            <artifactId>email-api</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
+        <!-- Utils we use -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>javaspaces-utilities</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

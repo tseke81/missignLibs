@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <!--parent>
+    <artifactId>travellinck-utilities</artifactId>
+    <groupId>com.travellinck.integration.utilities</groupId>
+    <version>0.2</version>
+  </parent-->
+  
+  <groupId>com.travellinck.integration.utilities</groupId>
+  <artifactId>batch-emailer</artifactId>
+  <version>0.1</version>
+  
+  <name>Travellinck Batch Emailing Utility</name>
+  <description>
+  	A useful utility to send batch emails.
+  </description>
+  <url>http://www.travellinck.com</url>
+  
+  <build>
+    <plugins>
+      <!--<plugin>-->
+          <!--<groupId>org.apache.maven.plugins</groupId>-->
+          <!--<artifactId>maven-jar-plugin</artifactId>-->
+          <!--<configuration>-->
+            <!--<archive>-->
+              <!--<manifest>-->
+                <!--<mainClass>com.travellinck.utilities.email.batch.BatchFileEmailer</mainClass>-->
+                <!--<packageName>com.travellinck.utilities.email.batch</packageName>-->
+              <!--</manifest>-->
+              <!--<manifestEntries>-->
+                <!--<url>${pom.url}</url>-->
+              <!--</manifestEntries>-->
+            <!--</archive>-->
+          <!--</configuration>-->
+      <!--</plugin>-->
+        <!-- USE THE mvn clean compile assembly:single TO BUILD THE jar-->
+        <!-- run as a jar  java -jar target/batch-emailer.jar-->
+        <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+                <finalName>batch-emailer-exec</finalName>
+                <appendAssemblyId>false</appendAssemblyId>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>com.travellinck.utilities.email.batch.BatchFileEmailer</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                    <phase>package</phase> <!-- bind to the packaging phase -->
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+  </build>
+  
+  <dependencies>
+
+    <!-- JavaMail -->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+
+    <!-- Testing dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>[4.7,)</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.jmock</groupId>
+        <artifactId>jmock</artifactId>
+        <version>2.5.1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.travellinck.integration.utilities</groupId>
+        <artifactId>travellinck-testing-utilities</artifactId>
+        <version>RELEASE</version>
+        <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+  
+</project>

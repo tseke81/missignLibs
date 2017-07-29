@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.travellinck</groupId>
+    <artifactId>client-endpoints</artifactId>
+    <version>1.1</version>
+    <packaging>pom</packaging>
+
+    <name>Travellinck :: Client Endpoints (parent)</name>
+    <description>
+        Travellinck integration components are currently deployed in a hybrid Java EE / OSGi
+        envirponment that does not seamlessly support Distributed OSGi. This module, an
+        Java EE 6 module, uses the JBoss modules system to expose manual proxies to some services
+        as SOAP or RESTful web services.
+   </description>
+
+    <modules>
+        <module>ejb</module>
+        <module>web</module>
+        <module>ear</module>
+    </modules>
+
+    <developers>
+        <developer>
+            <id>graham</id>
+            <name>Graham Withey</name>
+            <email>graham@travellinck.com</email>
+            <roles>
+                <role>Project Manager</role>
+                <role>Developer</role>
+            </roles>
+            <organization>Travellinck International Pty Ltd</organization>
+            <organizationUrl>http://www.travellinck.com</organizationUrl>
+            <timezone>+2</timezone>
+        </developer>
+        <developer>
+            <id>dawid</id>
+            <name>Dawid Loubser</name>
+            <email>dawid@travellinck.com</email>
+            <roles>
+                <role>Architect</role>
+            </roles>
+            <organization>Travellinck International Pty Ltd</organization>
+            <organizationUrl>http://www.travellinck.com</organizationUrl>
+            <timezone>+2</timezone>
+        </developer>
+        <developer>
+            <id>ettienne</id>
+            <name>Ettienne van Vuuren</name>
+            <email>ettienne@travellinck.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>Travellinck International Pty Ltd</organization>
+            <organizationUrl>http://www.travellinck.com</organizationUrl>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>travellinck-repo</id>
+            <url>http://repo.travellinck.com/nexus/content/repositories/releases</url>
+            <releases> 
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy> 
+            </releases>
+            <snapshots> 
+                <enabled>false</enabled>   
+            </snapshots>
+        </repository>
+        
+        <repository>
+            <id>java.net2</id>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+        
+        <repository>
+          <id>jboss-public-repository-group</id>
+          <name>JBoss Public Maven Repository Group</name>
+          <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+          <layout>default</layout>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+        </repository>
+        
+        <repository>
+            <id>Glassfish</id>
+            <name>Glassfish Repository</name>
+            <url>http://download.java.net/maven/glassfish</url>
+        </repository>
+
+
+        <repository>
+			<id>The Buzz Media Maven Repository</id>
+			<url>http://maven.thebuzzmedia.com</url>
+		</repository>
+        
+    </repositories>
+
+    <build>
+        <!-- Central specification of versiosn of all Maven plugins used in sub-projects -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                        <fork>true</fork>
+                        <maxmem>768m</maxmem>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <plugin>
+                    <groupId>maven</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <version>1.7.3</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.9</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.1.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.travellinck.integration.clients.mobile-leisure</groupId>
+                <artifactId>com.travellinck.clients.ultrasimple.api</artifactId>
+                <version>1.0.2</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- Ultra Simple Api trip and traveller persistence-->
+            <dependency>
+                <groupId>com.travellinck.integration.core</groupId>
+                <artifactId>com.travellinck.corporate.integration</artifactId>
+                <version>1.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- This is a Java EE 6 app -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>6.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+
+            <!-- OSGi (integration/soa layer is an OSGi suite) -->
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi_R4_core</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi_R4_compendium</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <!-- General Java utilities (mostly date/time etc) -->
+            <dependency>
+                <groupId>com.travellinck.utilities</groupId>
+                <artifactId>general-utilities</artifactId>
+                <version>1.6.2</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+</project>
+
+
+

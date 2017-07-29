@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration</groupId>
+        <artifactId>travellinck-osgi-bom</artifactId>
+        <version>1.0</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.suppliers.sabre</groupId>
+    <artifactId>sabre</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Sabre Integration</name>
+
+    <description>
+        Parent project that groups various projects relating to integrating
+        with this supplier, such as Java versions of services contracts,
+        OSGi-based adaptor, etc.
+    </description>
+
+    <modules>
+        <module>sabre-contract</module>
+        <module>com.travellinck.integration.supplier.sabre.adaptor</module>
+		<module>com.travellinck.integration.supplier.sabre.benchmark.adaptor</module>
+		<module>com.travellinck.integration.supplier.sabre.hotels.adaptor</module>
+		<module>com.travellinck.integration.supplier.sabre.cars.adaptor</module>
+	</modules>
+
+</project>

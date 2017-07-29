@@ -1,0 +1,5 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Mon Aug 05 11:21:47 SAST 2013
+com.travellinck-1.6.pom>=
+com.travellinck-1.6.oar>=
+com.travellinck-1.6.jar>=

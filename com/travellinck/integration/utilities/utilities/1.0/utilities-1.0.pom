@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.travellinck.integration.utilities</groupId>
+  <artifactId>utilities</artifactId>
+  <version>1.0</version>
+
+  <packaging>pom</packaging>
+
+  <name>Utility Modules</name>
+
+  <description>Common utility toolkits that have broad usage across various domains.</description>
+
+  <modules>
+    <module>com.travellinck.transIT.java-tools</module>
+    <module>com.travellinck.integration.utilities.supplier-utilities</module>
+    <module>com.travellinck.integration.utilities.xml-utilities</module>
+    <module>com.travellinck.integration.utilities.carbonEmissions</module>
+  </modules>
+
+</project>

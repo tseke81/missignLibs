@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration.suppliers</groupId>
+        <artifactId>suppliers</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.suppliers.protea</groupId>
+    <artifactId>protea</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Protea Integration Projects</name>
+    <description>
+        Parent project that groups various projects relating to integrating 
+        with this supplier, such as Java versions of services contracts,
+        OSGi-based adaptor, etc.
+    </description>
+    
+    <modules>
+        <module>protea-contract</module>
+        <module>com.travellinck.integration.supplier.protea.adaptor</module>
+    </modules>
+    
+
+</project>

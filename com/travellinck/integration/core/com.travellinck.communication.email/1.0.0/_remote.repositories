@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Fri Jun 12 13:25:39 SAST 2015
+com.travellinck.communication.email-1.0.0.jar>=
+com.travellinck.communication.email-1.0.0.pom>=

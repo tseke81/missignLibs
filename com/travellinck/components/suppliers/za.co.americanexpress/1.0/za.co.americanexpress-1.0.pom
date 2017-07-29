@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.travellinck.components</groupId>
+        <artifactId>suppliers</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.travellinck.components.suppliers</groupId>
+    <artifactId>za.co.americanexpress</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Supplier: American Express (parent)</name>
+
+    <modules>
+        <module>bta-powerlink-recon-components</module>
+        <module>bta-powerlink-recon-api</module>
+        <module>bta-powerlink-dataconverter</module>
+    </modules>
+
+</project>

@@ -1,0 +1,565 @@
+    <project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>corporate</artifactId>
+        <version>3.9</version>
+    </parent>
+
+    <artifactId>corporateInterface</artifactId>
+    <packaging>war</packaging>
+   
+    <name>Travellinck :: Corporate user interface (${deploy.style}, clients use ${http.url.external})</name>
+    <url>http://www.travellinck.com/</url>
+    <description>User interface for the Travellinck corporate travel portal.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.travellinck.integration.core</groupId>
+            <artifactId>com.travellinck.communication.gsm.sms-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- For testing, we need concrete implementations of JSP and Servlet API. These must be
+         listed BEFORE the Java EE 6 API dependency. -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>6.0.32</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>6.0.32</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+		<dependency>
+		    <groupId>net.sourceforge.jexcelapi</groupId>
+		    <artifactId>jxl</artifactId>
+            <scope>provided</scope>
+		</dependency>        
+
+        <!--Travellinck toolkit-->
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.transIT.java-tools</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck vocabulary-->
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck XML utilities-->
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Travellinck approval component client API-->
+        <!--<dependency>-->
+            <!--<groupId>com.travellinck.approval</groupId>-->
+            <!--<artifactId>approval-engine-soap-api</artifactId>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck</groupId>
+            <artifactId>corporateBusinessModel</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <!-- Provided by corporateEAR -->
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Commons logging already provided by the container -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!-- Struts dependencies now centralised in corporateEar -->
+        <dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts-core</artifactId>
+            <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts-tiles</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts-taglib</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-secure-extensions</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.nkp.struts13.sslext</groupId>
+            <artifactId>sslext</artifactId>
+            <scope>provided</scope>
+         </dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>fop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>displaytag</groupId>
+            <artifactId>displaytag</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--  TravelTalk Java Contract -->
+	    <dependency>
+	      <groupId>com.travellinck.integration.suppliers.traveltalk</groupId>
+          <artifactId>traveltalk-contract</artifactId>
+          <scope>provided</scope>
+	    </dependency>
+
+        <!-- We call integration layer via OSGi -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_core</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_compendium</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Using (unfortunately) proprietary JBOss services stuff -->
+        <dependency>
+          <groupId>org.jboss.msc</groupId>
+          <artifactId>jboss-msc</artifactId>
+          <version>1.0.1.GA</version>
+          <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+          <groupId>nl.captcha</groupId>
+          <artifactId>simplecaptcha</artifactId>
+          <version>1.2.1</version>
+        </dependency>
+
+        <!--Calendar stuff-->
+        <dependency>
+            <groupId>org.mnode.ical4j</groupId>
+            <artifactId>ical4j</artifactId>
+        </dependency>
+
+        <!-- General Java utilities (date/time stuff etc) -->
+        <dependency>
+            <groupId>com.travellinck.utilities</groupId>
+            <artifactId>general-utilities</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gag</groupId>
+            <artifactId>gag</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>2.26.1</version>
+        </dependency>
+
+
+    </dependencies>
+
+
+    <build>
+        <finalName>corporateInterface</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>target/jaxws</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>com.samaxes.maven</groupId>
+                <artifactId>minify-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>generate-default-css</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <!-- This defines the true content of general.css (general.min.css) - and should
+                            always correspond with the contents of the (dev-ony) general.css -->
+                            <cssSourceDir>styles/default</cssSourceDir>
+                            <cssSourceFiles>
+                                <cssSourceFile>common.css</cssSourceFile>
+                                <cssSourceFile>itinerary.css</cssSourceFile>
+                                <cssSourceFile>availability.css</cssSourceFile>
+                                <cssSourceFile>booking.css</cssSourceFile>
+                                <cssSourceFile>payment.css</cssSourceFile>
+                                <cssSourceFile>itemDetail.css</cssSourceFile>
+                                <cssSourceFile>serviceProviders.css</cssSourceFile>
+                                <cssSourceFile>profile.css</cssSourceFile>
+                                <cssSourceFile>editHotel.css</cssSourceFile>
+                                <cssSourceFile>requisition.css</cssSourceFile>
+                                <cssSourceFile>maps.css</cssSourceFile>
+                                <cssSourceFile>pictures.css</cssSourceFile>
+                                <cssSourceFile>policy.css</cssSourceFile>
+                                <cssSourceFile>notes.css</cssSourceFile>
+                                <cssSourceFile>documents.css</cssSourceFile>
+                                <cssSourceFile>approval.css</cssSourceFile>
+                                <cssSourceFile>conclusionMessage.css</cssSourceFile>
+                                <cssSourceFile>contactUs.css</cssSourceFile>
+                                <cssSourceFile>cancel.css</cssSourceFile>
+                                <cssSourceFile>upcomingtrips.css</cssSourceFile>
+                                <cssSourceFile>tags.css</cssSourceFile>
+                            </cssSourceFiles>
+                            <cssFinalFile>general.css</cssFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>default.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>default.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tl-tags-editor</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>tl-tagsEditor.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>tl-tagsEditor.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tl-evaluator-editor</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>tl-evaluator-selector-2d.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>tl-evaluator-selector-2d.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tl-trip-observations-dialog</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>tl-trip-observations-dialog.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>tl-trip-observations-dialog.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tl-itinerary-reassign</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>tl-itinerary-reassign.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>tl-itinerary-reassign.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jquery-ui-validation</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>libs/jquery/plugins</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>jquery.ui.validation.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>jquery.ui.validation.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tl-policyViolation-snippet-display</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>tl-policyViolation-snippet-display.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>tl-policyViolation-snippet-display.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tl-quoteExpiry-warning</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>tl-quoteExpiry-warning.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>tl-quoteExpiry-warning.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tl-quoteExpiry-blocker</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <jsSourceDir>js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>tl-quoteExpiry-blocker.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>tl-quoteExpiry-blocker.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+         <!-- Filter resources in WEB-INF (e.g. Struts Config, which uses this for HTTP ports) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF</targetPath>
+                            <includes>
+                                <include>**/*.xml</include>
+                            </includes>
+                        </resource>
+                        <!-- Filtering for the included JSP footer, which contains the maven build version, etc -->
+                        <resource>
+                            <directory>${basedir}/src/main/webapp</directory>
+                            <includes>
+                                <include>tiles-layouts/trailer.jsp</include>
+                            </includes>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                      <archive>
+                        <!-- Dependencies on logging stuff for Jboss 7 (provided), and integration layer (OSGi modules) -->
+                        <!-- TODO: Automate versioning? -->
+                        <manifestEntries>
+                          <Dependencies>${corporate.module.dependencies}</Dependencies>
+                        </manifestEntries>
+                      </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <profiles>
+
+        <profile>
+            <id>reportsCompile</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>jasperreports-maven-plugin</artifactId>
+                        <version>1.0-beta-2</version>
+                        <configuration>
+                     <!-- TODO: Change paths to expected standard, as per maven plugin (needs path changes in all report files) -->
+                            <sourceDirectory>src/main/reports</sourceDirectory>
+                            <outputDirectory>target/corporateInterface/WEB-INF/classes/reports</outputDirectory>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>compile-reports</goal>
+                                </goals>
+                                <phase>process-resources</phase>
+                            </execution>
+                        </executions>
+
+                        <dependencies>
+                     <!--note this must be repeated here to pick up correct xml validation -->
+                            <dependency>
+                                <groupId>net.sf.jasperreports</groupId>
+                                <artifactId>jasperreports</artifactId>
+                                <version>5.1.2</version>
+                            </dependency>
+                        </dependencies>
+
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>jspCompile</id>
+            <activation>
+                <!-- TODO: Re-activate default JSP compilation when dependency issue is sorted out. The following happens:
+                [ERROR] Unable to read TLD "META-INF/c.tld" from JAR file
+                "file:/Users/dawidl/.m2/repository/javax/javaee-api/6.0/javaee-api-6.0.jar":
+                org.apache.jasper.JasperException: Failed to load or instantiate TagLibraryValidator
+                class: org.apache.taglibs.standard.tlv.JstlCoreTLV -> [Help 1] -->
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo.jspc</groupId>
+                        <artifactId>jspc-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                                <phase>compile</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <includeInProject>false</includeInProject>
+                            <source>1.5</source>
+                            <target>1.5</target>
+                        </configuration>
+                        <!-- Use the Tomcat 6 JSP compiler -->
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.mojo.jspc</groupId>
+                                <artifactId>jspc-compiler-tomcat6</artifactId>
+                                <version>2.0-alpha-3</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.slf4j</groupId>
+                                <artifactId>slf4j-log4j12</artifactId>
+                                <version>1.5.8</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Do integration testing on-demand only -->
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

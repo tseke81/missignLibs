@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration.suppliers.sabre</groupId>
+        <artifactId>sabre</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.travellinck.integration.suppliers.sabre</groupId>
+    <artifactId>sabre-contract</artifactId>
+    <version>1.0</version>
+    <name>Sabre Contract (Java API)</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <bundle.name>Sync Adaptor: Sabre</bundle.name>
+		<cxf.version>3.0.2</cxf.version>
+    </properties>
+
+	 <dependencies>
+       
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics-runtime</artifactId>
+            <version>0.9.4</version>
+        </dependency>
+	
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>wsimport</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>jaxws-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>wsimport</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <target>2.1</target>
+                            <wsdlUrls>
+								<wsdlFile>${basedir}/src/main/resources/contracts/QueuePlaceLLS2.0.4RQ.wsdl</wsdlFile>
+								<wsdlFile>${basedir}/src/main/resources/contracts/OTA_AirBookLLS2.1.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/BargainFinderMaxRQ_v3-1-0.wsdl</wsdlFile>
+								<wsdlFile>${basedir}/src/main/resources/contracts/AddRemarkLLS2.1.1RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/AirTicketLLS2.7.0RQ.wsdl</wsdlFile>
+								<wsdlFile>${basedir}/src/main/resources/contracts/AirPricing_NoPNRRQ_v1.0.6.wsdl</wsdlFile>
+								<wsdlFile>${basedir}/src/main/resources/contracts/ARUNK_LLS2.0.2RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/CreditVerificationLLS2.2.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/DeletePriceQuoteLLS2.0.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/DesignatePrinterLLS2.0.1RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/EndTransactionLLS2.0.5RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/EnhancedAirBook3.6.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/HotelPropertyDescriptionLLS2.3.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/HotelRateDescriptionLLS2.3.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/HotelResModifyLLS2.1.0RQ.wsdl</wsdlFile>
+				                <wsdlFile>${basedir}/src/main/resources/contracts/IgnoreTransactionLLS2.0.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/ModifyRemarkLLS2.1.2RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/OTA_AirAvailLLS2.4.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/OTA_AirPriceLLS2.11.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/OTA_CancelLLS2.0.1RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/OTA_HotelAvailLLS2.2.1RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/HotelPropertyDescriptionLLS2.3.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/OTA_HotelResLLS2.2.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/OTA_PingRQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/OTA_VehAvailRateLLS2.4.1RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/OTA_VehResLLS2.1.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/PassengerDetails3.3.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/SessionCloseRQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/SessionCreateRQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/TravelItineraryAddInfoLLS2.1.0RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/TravelItineraryReadRQ3.8.0.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/VehLocationFinderLLS2.2.0RQ.wsdl</wsdlFile>
+                                <!--<wsdlFile>${basedir}/src/main/resources/contracts/VehResModifyLLS2.1.0RQ.wsdl</wsdlFile>-->
+                                <wsdlFile>${basedir}/src/main/resources/contracts/VoidTicketLLS2.0.2RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/SabreCommandLLS1.8.1RQ.wsdl</wsdlFile>
+                                <wsdlFile>${basedir}/src/main/resources/contracts/ContextChangeLLS2.0.3RQ.wsdl</wsdlFile>
+								<wsdlFile>${basedir}/src/main/resources/contracts/CreatePassengerNameRecord1.0.0RQ.wsdl</wsdlFile>
+								
+                            </wsdlUrls>
+                            <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+                            <bindingFiles>
+                                
+                            </bindingFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+ <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.12.3</version>
+                <executions>  
+                    <execution>
+                        <id>bargain-finder-max-schemas</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>XMLSCHEMA</schemaLanguage>
+                            <forceRegenerate>true</forceRegenerate>
+                            <bindingIncludes>
+                                <include>**/bargain-finder-max-custom-binding.jxb</include>
+                            </bindingIncludes>
+                            <generateDirectory>target/generated-sources/xjc</generateDirectory>
+                            <generatePackage>com.sabre.api.sacs.contract.bargainfindermax</generatePackage>
+                            <schemaIncludes>
+                                <include>**/wsdls/BargainFinderMaxRQ/*RQRS*.xsd</include>
+                            </schemaIncludes>
+                            <schemaExcludes>
+                                <exclude>**/wsse.xsd</exclude>
+                                <exclude>**/wsse2.xsd</exclude>
+                                <exclude>**/msg-header-2_0.xsd</exclude>
+                            </schemaExcludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+</project>

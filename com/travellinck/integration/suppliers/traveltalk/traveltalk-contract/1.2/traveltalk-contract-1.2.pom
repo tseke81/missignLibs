@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+    <parent>
+      <groupId>com.travellinck.integration.suppliers.traveltalk</groupId>
+      <artifactId>traveltalk</artifactId>
+      <version>1.0</version>
+    </parent>
+
+  <groupId>com.travellinck.integration.suppliers.traveltalk</groupId>
+  <artifactId>traveltalk-contract</artifactId>
+  <version>1.2</version>
+  <name>TravelTalk Contract (Java API)</name>
+  <url>http://maven.apache.org</url>
+  
+  
+  <profiles>
+    <profile>
+      <id>wsimport</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jaxws-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>wsimport</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <target>2.1</target>
+              <wsdlUrls>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsLowFare.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsLowFarePlus.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsAirAvail.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsAirPrice.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsPNRCancel.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsPNRRead.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsHotelAvail_v03.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/traveltalk-wmTravelBuild_v04.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wmIssueTicket.wsdl</wsdlUrl>
+                 <!-- wsdlUrl>${basedir}/src/main/resources/contracts/wsCarAvail.wsdl</wsdlUrl -->
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsCarAvail_v03.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsUpdate.wsdl</wsdlUrl>
+                 <wsdlUrl>${basedir}/src/main/resources/contracts/wsHotelInfo.wsdl</wsdlUrl>
+              </wsdlUrls>
+              <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
+</project>

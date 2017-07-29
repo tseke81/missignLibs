@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.travellinck.integration.suppliers</groupId>
+        <artifactId>sap</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>com.travellinck.integration.suppliers.sap</groupId>
+    <artifactId>sap-es-employee-api</artifactId>
+    <version>1.0</version>
+
+    <name>SAP: EmployeeERPByElementsQuery_In (Java API)</name>
+    <description>
+        Produces a Java API based on the SAP ES 'EmployeeERPByElementsQuery_In'
+        web service contract.
+    </description>
+    <url>http://esworkplace.sap.com/</url>
+
+    <profiles>
+        <profile>
+            <id>wsimport</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>jaxws-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>wsimport</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <target>2.1</target>
+                            <wsdlUrls>
+                                <!--<wsdlUrl>${basedir}/src/main/resources/contracts/EmployeeERPByElementsQuery_In-soap.wsdl</wsdlUrl>-->
+                                <!--<wsdlUrl>${basedir}/src/main/resources/contracts/OrganisationalCentreERPEmployeeByElementsQueryResponse_In-soap.wsdl</wsdlUrl>-->
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/EmployeeBasicDataByEmployeeQueryResponse_In-soap.wsdl</wsdlUrl>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/EmployeeCommunicationDataByEmployeeQueryResponse_In-soap.wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

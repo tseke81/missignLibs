@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck.deployments</groupId>
+        <artifactId>core</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.deployments.core</groupId>
+    <artifactId>com.travellinck</artifactId>
+    <version>1.9</version>
+    <packaging>jar</packaging>
+
+    <name>Core Deployment Package: TravelLinck</name>
+    <description>
+        Deployment package for a Travellinck. Specifies all core services and
+        infrastructure required by client deployments (and Travellink in general).
+    </description>
+
+    <build>
+        <plugins>
+            <!-- RIO plugin to generate high-level opstring (deployment) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-rio-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>build-oar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>oar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <opstring>src/main/opstring/com.travellinck.groovy</opstring>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Do integration testing on-demand only -->
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <!-- This is a RIO project -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-platform</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Integration Testing Framework -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+         <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-api</artifactId>
+            <scope>test</scope>
+         </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.utilities</groupId>
+            <artifactId>general-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Helps with authoring the config file, etc (not a real dependency, which is
+        taken care of at runtime by Rio) -->
+        <dependency>
+            <groupId>org.dancres.blitz</groupId>
+            <artifactId>blitz-proxy</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dancres.blitz</groupId>
+            <artifactId>blitz-service</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+</project>

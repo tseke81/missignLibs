@@ -1,0 +1,130 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.travellinck</groupId>
+		<artifactId>corporate</artifactId>
+		<version>3.8</version>
+	</parent>
+
+	<groupId>com.travellinck</groupId>
+	<artifactId>shortenURL</artifactId>
+	<packaging>war</packaging>
+	<version>3.8</version>
+
+	<name>Travellinck :: Short URL</name>
+	<url>http://www.travellinck.com/</url>
+	<description>Provides a service to shorten URLs, and retrieve them again.</description>
+
+	<dependencies>
+		<!-- For testing, we need concrete implementations of certain Java EE APIs. 
+			These must be listed BEFORE the "pure" Java EE 6 API dependency. -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>6.0.32</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>6.0.32</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.openjpa</groupId>
+			<artifactId>openjpa</artifactId>
+			<version>2.1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit-dep</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock-junit4</artifactId>
+			<scope>test</scope>
+		</dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+		<!--Travellinck toolkit-->
+		<dependency>
+			<groupId>com.travellinck.integration.utilities</groupId>
+			<artifactId>com.travellinck.transIT.java-tools</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!--Travellinck vocubulary-->
+		<dependency>
+			<groupId>com.travellinck.integration.vocabulary</groupId>
+			<artifactId>com.travellinck.transIT.java-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+      <dependency>
+         <groupId>com.travellinck</groupId>
+         <artifactId>corporateBusinessModel</artifactId>
+         <version>${project.version}</version>
+         <type>ejb</type>
+         <scope>provided</scope>
+      </dependency>
+		
+	</dependencies>
+
+
+	<build>
+		<finalName>shortenURL</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>target/jaxws</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<!-- Filter resources in WEB-INF (e.g. Struts Config, which uses this 
+				for HTTP ports) -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+							<filtering>true</filtering>
+							<targetPath>WEB-INF</targetPath>
+							<includes>
+								<include>**/*.xml</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

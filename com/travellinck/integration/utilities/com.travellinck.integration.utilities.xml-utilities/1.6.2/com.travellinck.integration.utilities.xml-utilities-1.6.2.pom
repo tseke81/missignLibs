@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration</groupId>
+        <artifactId>travellinck-osgi-bom</artifactId>
+        <version>1.0</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <properties>
+        <bundle.name>XML Utilities</bundle.name>
+        <bundle.symbolicName>com.travellinck.integration.utilities.xml-utilities</bundle.symbolicName>
+        <bundle.namespace>com.travellinck.integration.utilities.xml-utilities</bundle.namespace>
+    </properties>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.utilities</groupId>
+    <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+    <version>1.6.2</version>
+
+    <name>${bundle.name} [osgi]</name>
+    <description>
+        Common XML and XPath utilities, used for directly 
+        processing parsed XML, assisting in producing confabulated
+        XML/HTTP service proxies, etc.
+
+    </description>
+
+    <packaging>bundle</packaging>
+
+    <dependencies>
+        <!-- OSGi environment -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_core</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_compendium</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <!-- Need to bundle saxon with (embed) -->
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>9.3</version>
+        </dependency>
+
+        <!--This version of Saxon doesn't deploy, but is in the Maven repo-->
+        <!--<dependency>-->
+            <!--<groupId>net.sf.saxon</groupId>-->
+            <!--<artifactId>Saxon-HE</artifactId>-->
+            <!--<version>9.6.0-2</version>-->
+        <!--</dependency>-->
+
+        <!-- Unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Configuration to compile all schemas in the
+           resources/schemas directory. Automatically
+           invoked during the 'generate-sources' phase -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>mainSchemas</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <episodeFile>target/mainSchemas.episode</episodeFile>
+                            <schemaDirectory>src/main/resources</schemaDirectory>
+                            <schemaIncludes>
+                                <include>*.xsd</include>
+                            </schemaIncludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Export-Package>
+                            com.travellinck.uri.utilities;
+                            com.travellinck.xml.utilities;
+                            com.travellinck.xpath.xbobpath;
+                            com.travellinck.xslt.utilities;
+                            com.travellinck.xml.ws.confabulation.*;
+                            com.travellinck.xml.ws.confabulation.chains.*;
+                            com.travellinck.xml.ws.confabulation.handlers.*;
+                        </Export-Package>
+                        <!-- embed all compile and runtime scope dependencies -->
+                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Saxon 9.3, the specific version which we require (solid testing has not been done with later
+         versions, but there may be OSGi bundling issues with those) is not available in a Maven
+         Repo, despite being freely available. Travellinck does not currently have a public Maven
+         repo, to provide this lib to out-sourced development providers.
+
+         This section lists outsource-provider-specific repositories where Saxon has been deployed
+         to - remember to activate the profile that you're interested in at build time!  e.g.
+
+         "mvn install -P jiniguru_repo"
+    -->
+    <profiles>
+        <profile>
+            <id>jiniguru_repo</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>jiniguru-travellinck</id>
+                    <url>http://jini.guru:8081/nexus/content/repositories/travellinck/</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+</project>

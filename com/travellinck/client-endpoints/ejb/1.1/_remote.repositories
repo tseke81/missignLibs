@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Mar 03 06:47:52 SAST 2014
+ejb-1.1.pom>=
+ejb-1.1.jar>=

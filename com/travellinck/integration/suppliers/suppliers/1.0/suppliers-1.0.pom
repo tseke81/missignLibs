@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.suppliers</groupId>
+    <artifactId>suppliers</artifactId>
+    <version>1.0</version>
+
+    <packaging>pom</packaging>
+
+    <name>Supplier Modules</name>
+    <description>Modules that adapt suppliers to the Travellinck environment.</description>
+
+    <profiles>
+
+        <profile>
+            <id>traveltalk</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>traveltalk</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>avis</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>avis</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>mango</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>mango</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>mastercard</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>mastercard</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>citylodge</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>citylodge</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>southernsun</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>southernsun</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>res247</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>res247</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>iveri</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>iveri</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>signaturelife</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>signaturelife</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>bookingcenter</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>bookingcenter</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>clickatel</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>clickatel</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>europcar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>europcar</module>
+            </modules>
+        </profile>
+
+
+        <profile>
+            <id>firstcar</id>
+            <activation>
+              <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+              <module>firstcar</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>threecities</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>threecities</module>
+            </modules>
+        </profile>
+
+
+        <profile>
+            <id>hotelzon</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>hotelzon</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>hconnect</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>hconnect</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>ezshuttle</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>ezshuttle</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>sap</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>sap</module>
+            </modules>
+        </profile>
+
+	    <profile>
+            <id>nightsbridge</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>nightsbridge</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>rci</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>rci</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>dummy</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>dummy</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>travelport</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>travelport-uapi</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>yourchequeisinthemail</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>yourchequeisinthemail</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>sabre</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>sabre</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>gds</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>gds</module>
+            </modules>
+        </profile>
+
+    </profiles>
+</project>

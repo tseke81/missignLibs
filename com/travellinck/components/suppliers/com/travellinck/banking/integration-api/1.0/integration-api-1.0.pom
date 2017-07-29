@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>com.travellinck.components.suppliers</groupId>
+        <artifactId>com.travellinck.banking</artifactId>
+        <version>1.0</version>
+    </parent>
+	
+	<groupId>com.travellinck.components.suppliers.com.travellinck.banking</groupId>
+    <artifactId>integration-api</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck Banking Integration API</name>
+
+    <description>A set of contracts for services provided by the TravelLinck banking system.</description>
+  
+    <profiles>
+        <profile>
+            <id>wsimport</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Generate Java contracts from WSDls -->
+                    <plugin>
+                        <groupId>org.jvnet.jax-ws-commons</groupId>
+                        <artifactId>jaxws-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>wsimport</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <target>2.2</target>
+                            <wsdlUrls>
+                            <wsdlUrl>${basedir}/src/main/resources/contracts/banking/banking.wsdl</wsdlUrl>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/banking/accounts/validation/validation.wsdl</wsdlUrl>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/banking/accounts/verification/verification.wsdl</wsdlUrl>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/banking/accounts/verification/notification/callback.wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+                        </configuration>
+                    </plugin>
+
+                    <!-- Make those Java contracts compatible with RMI / Jini -->
+                    <plugin>
+                        <groupId>com.travellinck.integration.utilities</groupId>
+                        <artifactId>jaxws-rmi-compatability-maven-plugin</artifactId>
+                        <version>0.1</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>make-remote</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <fileSet>
+                                <directory>${project.build.directory}</directory>
+                                <includes>
+                                    <include>**/*.class</include>
+                                </includes>
+                            </fileSet>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

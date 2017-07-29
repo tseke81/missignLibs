@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.travellinck.integration.clients.mobile-leisure</groupId>
+  <artifactId>mobile-leisure</artifactId>
+  <version>1.0</version>
+
+  <packaging>pom</packaging>
+
+  <name>Mobile/Leisure Client Modules</name>
+
+  <description>
+      APIs, adaptors etc that expose very simple travel services (suitable for usage form mobile clients).
+      Originally created for a collaboration with Mobicover (May, 2012).
+  </description>
+
+  <modules>
+      <module>com.travellinck.clients.ultrasimple.api</module>
+      <module>com.travellinck.clients.ultrasimple.adaptor</module>
+  </modules>
+
+</project>

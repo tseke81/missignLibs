@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.project</groupId>
+    <artifactId>passive-segments-sync-project</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Project: Intinerary Sync (Passive entries)</name>
+    <description>
+	Ad-hoc project structure that contains everything required to build an
+        adaptor implementing the "ItineraryDestination" contract.
+    </description>
+
+    <organization>
+        <name>Travellinck International</name>
+        <url>http://www.travellinck.com</url>
+    </organization>
+
+    <modules>
+        <module>osgi_bom</module>
+        <module>osgi_tools_transit</module>
+        <module>osgi_tools_xml_utils</module>
+        <module>osgi_vocab_transit</module>
+        <module>util_java_indexed_properties</module>
+        <module>util_java_testing</module>
+        <module>osgi_itinerary_sync_travelport_uapi</module>
+        <module>osgi_core_sync_filter_api</module>
+        <module>osgi_core_sync_broker</module>
+	    <module>osgi_tools_supplier_utils</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

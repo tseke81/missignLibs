@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>client-endpoints</artifactId>
+        <version>1.1</version>
+    </parent>
+
+   <groupId>com.travellinck.client-endpoints</groupId>
+   <artifactId>ear</artifactId>
+   <version>1.1</version>
+   <packaging>ear</packaging>
+   <name>Travellinck :: Client endpoints package (EAR)</name>
+   
+   <dependencies>
+      
+      <dependency>
+          <groupId>com.travellinck.client-endpoints</groupId>
+          <artifactId>ejb</artifactId>
+          <version>1.1</version>
+          <type>ejb</type>
+      </dependency>
+      <dependency>
+          <groupId>com.travellinck.client-endpoints</groupId>
+          <artifactId>web</artifactId>
+          <version>1.1</version>
+         <type>war</type>
+      </dependency>
+   </dependencies>
+   
+   <build>
+      <finalName>${parent.artifactId}</finalName>
+      <plugins>
+         <plugin>
+            <artifactId>maven-ear-plugin</artifactId>
+            <configuration>
+               <version>6</version>
+               <defaultLibBundleDir>lib</defaultLibBundleDir>
+               <modules>
+                  <webModule>
+                      <groupId>com.travellinck.client-endpoints</groupId>
+                      <artifactId>web</artifactId>
+                     <contextRoot>/client-endpoints-rest</contextRoot>
+                  </webModule>
+               </modules>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <plugins>
+    <plugin>
+      <name>Indexed Properties Generator (Maven Plugin)</name>
+      <prefix>indexed-properties</prefix>
+      <artifactId>indexed-properties-maven-plugin</artifactId>
+    </plugin>
+    <plugin>
+      <name>JAX-WS Remote Method Calls Adaptor (Maven Plugin)</name>
+      <prefix>jaxws-rmi-compatability</prefix>
+      <artifactId>jaxws-rmi-compatability-maven-plugin</artifactId>
+    </plugin>
+  </plugins>
+</metadata>

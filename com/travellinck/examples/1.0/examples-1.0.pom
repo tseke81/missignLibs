@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>travellinck-rio</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck</groupId>
+    <artifactId>examples</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>A smattering of random examples</name>
+    <description>
+        Example projects that illustrate some aspect of coding in the Rio / space-based
+        framework. TODO: Restructure and expand!
+    </description>
+
+    <modules>
+        <module>calculator-components</module>
+        <module>calculator-deployment</module>
+        <module>simple-synchronous-api</module>
+        <module>simple-synchronous-service</module>
+        <module>simple-scheduled-service</module>
+
+        <!-- These depend on 2 different older versions of TransIT vocabulary
+        to illustrate versioning concepts: Not usually built, but a useful reference
+        to deal with space-based versioning problems:
+        <module>populate-space-v1</module>
+        <module>consume-space-v2</module>
+        -->
+    </modules>
+    
+</project>

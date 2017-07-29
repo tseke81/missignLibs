@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Sep 20 12:49:33 SAST 2016
+com.travellinck.integration.sync.travelport.uapi.adaptor-1.8.9.jar>=
+com.travellinck.integration.sync.travelport.uapi.adaptor-1.8.9.pom>=

@@ -1,0 +1,16 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Jun 19 10:32:08 SAST 2014
+https\://repository.jboss.org/nexus/content/groups/public-jboss/.error=
+http\://www.rio-project.org/maven2/.lastUpdated=1403166712532
+http\://www.rio-project.org/maven2/.error=
+http\://download.java.net/maven/glassfish/.lastUpdated=1403166709019
+http\://download.java.net/maven/2/.lastUpdated=1403166690486
+http\://download.java.net/maven/glassfish/.error=
+http\://repo.maven.apache.org/maven2/.lastUpdated=1403166710834
+http\://download.java.net/maven/2/.error=
+http\://repo.maven.apache.org/maven2/.error=
+https\://repository.jboss.org/nexus/content/groups/public-jboss/.lastUpdated=1403166708362
+http\://maven.thebuzzmedia.com/.lastUpdated=1403166710413
+http\://download.eclipse.org/rt/eclipselink/maven.repo/.error=
+http\://download.eclipse.org/rt/eclipselink/maven.repo/.lastUpdated=1403166728176
+http\://maven.thebuzzmedia.com/.error=

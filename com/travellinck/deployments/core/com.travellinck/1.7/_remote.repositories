@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Nov 04 16:48:50 SAST 2013
+com.travellinck-1.7.oar>=
+com.travellinck-1.7.jar>=
+com.travellinck-1.7.pom>=

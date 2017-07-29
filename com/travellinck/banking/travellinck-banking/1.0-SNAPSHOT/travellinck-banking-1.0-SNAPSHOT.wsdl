@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Callback" targetNamespace="http://travellinck.com/banking/accounts/verification/notification/soap" xmlns:ns1="http://travellinck.com/banking/accounts/verification/notification" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://travellinck.com/banking/accounts/verification/notification/soap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://travellinck.com/persistence" version="1.0">
+<xs:complexType abstract="true" name="entity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://travellinck.com/banking/accounts" xmlns:ns2="http://travellinck.com/banking/accounts/verification" xmlns:tns="http://travellinck.com/banking/accounts/verification/notification" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://travellinck.com/banking/accounts/verification/notification">
+  <xs:import namespace="http://travellinck.com/banking/accounts"/>
+  <xs:import namespace="http://travellinck.com/banking/accounts/verification"/>
+  <xs:import namespace="http://travellinck.com/persistence"/>
+  <xs:complexType name="handleAccountDetailsVerificationEventRequest">
+    <xs:sequence>
+      <xs:element name="accountDetailsVerificationEvent" type="tns:accountDetailsVerificationEvent"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="accountDetailsVerificationEvent">
+    <xs:sequence>
+      <xs:element name="accountDetails" type="ns1:accountDetails"/>
+      <xs:element name="callbackDetails" type="ns2:callbackDetails"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element name="occuredAt" type="xs:dateTime"/>
+      <xs:element name="reference" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="accountDetailsSubmittedForVerificationEvent">
+    <xs:complexContent>
+      <xs:extension base="tns:accountDetailsVerificationEvent">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="accountDetailsNotEligibleForVerificationEvent">
+    <xs:complexContent>
+      <xs:extension base="tns:accountDetailsVerificationEvent">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="accountDetailsFailedPreValidationEvent">
+    <xs:complexContent>
+      <xs:extension base="tns:accountDetailsVerificationEvent">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="accountDetailsVerificationFailedEvent">
+    <xs:complexContent>
+      <xs:extension base="tns:accountDetailsVerificationEvent">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="accountDetailsVerificationSucceededEvent">
+    <xs:complexContent>
+      <xs:extension base="tns:accountDetailsVerificationEvent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="accountAcceptsCredits" type="ns2:response"/>
+          <xs:element minOccurs="0" name="accountAcceptsDebits" type="ns2:response"/>
+          <xs:element minOccurs="0" name="accountDormant" type="ns2:response"/>
+          <xs:element minOccurs="0" name="accountExists" type="ns2:response"/>
+          <xs:element minOccurs="0" name="accountOpen" type="ns2:response"/>
+          <xs:element minOccurs="0" name="accountOpenForAtLeastThreeMonths" type="ns2:response"/>
+          <xs:element minOccurs="0" name="companyIdentificationMatches" type="ns2:response"/>
+          <xs:element minOccurs="0" name="companyNameMatches" type="ns2:response"/>
+          <xs:element minOccurs="0" name="personIdentificationMatches" type="ns2:response"/>
+          <xs:element minOccurs="0" name="personInitialsMatches" type="ns2:response"/>
+          <xs:element minOccurs="0" name="personSurnameMatches" type="ns2:response"/>
+          <xs:element minOccurs="0" name="taxReferenceNumberMatches" type="ns2:response"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="handleAccountDetailsVerificationEventResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="requestNotValidException" type="tns:##default"/>
+  <xs:complexType name="##default">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="handleAccountDetailsVerificationEventRequest" nillable="true" type="tns:handleAccountDetailsVerificationEventRequest"/>
+  <xs:element name="handleAccountDetailsVerificationEventResponse" nillable="true" type="tns:handleAccountDetailsVerificationEventResponse"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://travellinck.com/persistence" xmlns:tns="http://travellinck.com/banking/accounts/verification" targetNamespace="http://travellinck.com/banking/accounts/verification" version="1.0">
+<xs:import namespace="http://travellinck.com/persistence"/>
+<xs:complexType abstract="true" name="callbackDetails">
+    <xs:complexContent>
+      <xs:extension base="ns1:entity">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="soapWebServiceCallbackDetails">
+    <xs:complexContent>
+      <xs:extension base="tns:callbackDetails">
+        <xs:sequence>
+          <xs:element name="serviceNameLocalPart" type="xs:string"/>
+          <xs:element name="serviceNameNamespaceUri" type="xs:string"/>
+          <xs:element name="wsdlLocationUrl" type="xs:anyURI"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:simpleType name="response">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Y"/>
+      <xs:enumeration value="N"/>
+      <xs:enumeration value="U"/>
+      <xs:enumeration value="F"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://travellinck.com/persistence" xmlns:tns="http://travellinck.com/banking/accounts" targetNamespace="http://travellinck.com/banking/accounts" version="1.0">
+<xs:import namespace="http://travellinck.com/persistence"/>
+<xs:complexType name="accountDetails">
+    <xs:complexContent>
+      <xs:extension base="ns1:entity">
+        <xs:sequence>
+          <xs:element name="accountHolder" type="tns:accountHolder"/>
+          <xs:element name="accountNumber" type="xs:string"/>
+          <xs:element name="accountType" type="tns:accountType"/>
+          <xs:element name="bankUri" type="xs:string"/>
+          <xs:element name="branchCode" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="accountHolder">
+    <xs:complexContent>
+      <xs:extension base="ns1:entity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="taxReferenceNumber" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="person">
+    <xs:complexContent>
+      <xs:extension base="tns:accountHolder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+          <xs:element minOccurs="0" name="initials" type="xs:string"/>
+          <xs:element minOccurs="0" name="middleNames" type="xs:string"/>
+          <xs:element name="personIdentification" type="tns:personIdentification"/>
+          <xs:element name="surname" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="personIdentification">
+    <xs:complexContent>
+      <xs:extension base="tns:legalIdentification">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="legalIdentification">
+    <xs:complexContent>
+      <xs:extension base="ns1:entity">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="southAfricanIdNumber">
+    <xs:complexContent>
+      <xs:extension base="tns:personIdentification">
+        <xs:sequence>
+          <xs:element name="number" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="southAfricanPassportNumber">
+    <xs:complexContent>
+      <xs:extension base="tns:personIdentification">
+        <xs:sequence>
+          <xs:element name="number" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="company">
+    <xs:complexContent>
+      <xs:extension base="tns:accountHolder">
+        <xs:sequence>
+          <xs:element name="companyIdentification" type="tns:companyIdentification"/>
+          <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="companyIdentification">
+    <xs:complexContent>
+      <xs:extension base="tns:legalIdentification">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="southAfricanCompanyRegistrationNumber">
+    <xs:complexContent>
+      <xs:extension base="tns:companyIdentification">
+        <xs:sequence>
+          <xs:element name="number" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:simpleType name="accountType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CURRENT"/>
+      <xs:enumeration value="SAVINGS"/>
+      <xs:enumeration value="TRANSMISSION"/>
+      <xs:enumeration value="BOND_ACCOUNT"/>
+      <xs:enumeration value="SUBSCRIPTION_SHARE"/>
+      <xs:enumeration value="UNKNOWN"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="RequestNotValidException">
+    <wsdl:part name="RequestNotValidException" element="ns1:requestNotValidException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="handleAccountDetailsVerificationEventResponse">
+    <wsdl:part name="handleAccountDetailsVerificationEventResponse" element="ns1:handleAccountDetailsVerificationEventResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="handleAccountDetailsVerificationEvent">
+    <wsdl:part name="handleAccountDetailsVerificationEventRequest" element="ns1:handleAccountDetailsVerificationEventRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Callback">
+    <wsdl:operation name="handleAccountDetailsVerificationEvent">
+      <wsdl:input name="handleAccountDetailsVerificationEvent" message="tns:handleAccountDetailsVerificationEvent">
+    </wsdl:input>
+      <wsdl:output name="handleAccountDetailsVerificationEventResponse" message="tns:handleAccountDetailsVerificationEventResponse">
+    </wsdl:output>
+      <wsdl:fault name="RequestNotValidException" message="tns:RequestNotValidException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CallbackSoapBinding" type="tns:Callback">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="handleAccountDetailsVerificationEvent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="handleAccountDetailsVerificationEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="handleAccountDetailsVerificationEventResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RequestNotValidException">
+        <soap:fault name="RequestNotValidException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Callback">
+    <wsdl:port name="CallbackPort" binding="tns:CallbackSoapBinding">
+      <soap:address location="http://localhost:9090/CallbackPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

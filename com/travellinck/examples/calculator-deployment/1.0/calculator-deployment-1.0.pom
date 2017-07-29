@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>examples</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.examples</groupId>
+    <artifactId>calculator-deployment</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Simple Space-Based Calculator Deployment</name>
+    <description>
+        A deployment project that deploys calculator components
+        to Rio.
+    </description>
+    <build>
+        <plugins>
+            <!-- RIO plugin to generate high-level opstring (deployment) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-rio-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>build-oar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>oar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <opstring>src/main/opstring/calculator.groovy</opstring>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>

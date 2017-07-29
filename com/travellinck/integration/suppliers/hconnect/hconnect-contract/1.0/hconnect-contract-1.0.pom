@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>hconnect</artifactId>
+        <groupId>com.travellinck.integration.suppliers.hconnect</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <properties>
+        <bundle.name>Supplier API: HConnect</bundle.name>
+        <bundle.symbolicName>com.travellinck.integration.suppliers.hconnect</bundle.symbolicName> <!-- Matches Java package -->
+        <bundle.namespace>hconnect-contract</bundle.namespace>
+    </properties>
+
+
+    <groupId>com.travellinck.integration.suppliers.hconnect</groupId>
+    <artifactId>hconnect-contract</artifactId>
+    <version>1.0</version>
+    <name>HConnect Contract (Java API)</name>
+    <description>
+        A JSON-based API for booking hotels across various providers (starting with Protea in July 2013)
+    </description>
+    <url>http://hconnect.hsolutions.co.za/documentation/</url>
+
+    <developers>
+        <developer>
+            <name>Juan de Witt</name>
+            <email>juandewitt@hospitalitysolutions.co.za</email>
+            <organization>Hospitality Solutions</organization>
+            <roles>
+                <role>Lead developer of HConnect service</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Runtime dependency (because annotations are used) -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- Filter OSGi configs (set values based on maven properties) -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>com.googlecode.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>0.3.7</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
+                    <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
+                    <!--<targetPackage>com.example.types</targetPackage>-->
+                    <targetPackage>za.co.hsolutions.hconnect</targetPackage>
+                    <annotationStyle>gson</annotationStyle>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

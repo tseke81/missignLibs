@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration</groupId>
+        <artifactId>travellinck-osgi-bom</artifactId>
+        <version>1.0</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.clients.mobile-leisure</groupId>
+    <artifactId>com.travellinck.clients.ultrasimple.adaptor</artifactId>
+    <version>1.0.1</version>
+
+    <name>${bundle.name} ${project.version} [osgi]</name>
+    <description>
+        A bundle that exposes the UltraSimple API services ot the OSGi environment
+        (e.g. Quoting) by adapting calls to the existing TransIT services (e.g. AVailabilityBroker).
+
+        NOTE: This bundle does not expose the service(s) to the outside world - as of
+        this time (July 2012) a separate Java EE module ("client-endpoints") is responsible\
+        for exposing this endpoint as a web service in the app server (JBoss 7) web container.
+
+        Once CXF DOSGi becomes possible in jBoss 7, this bundle should contain metadata to request
+        publication to the outside world.
+    </description>
+    <packaging>bundle</packaging>
+
+    <properties>
+        <bundle.name>Travellinck UltraSimple (to TransIT) Adaptor</bundle.name>
+        <bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
+	    <com.travellinck.corporate.integration.traveller.wsdl>${com.travellinck.corporate.webservices.root}/TravellerPersistenceService/PersistTravellerImpl?WSDL</com.travellinck.corporate.integration.traveller.wsdl>
+        <com.travellinck.corporate.integration.trip.wsdl>${com.travellinck.corporate.webservices.root}/TripPersistenceService/PersistTripImpl?WSDL</com.travellinck.corporate.integration.trip.wsdl>
+    </properties>
+
+
+    <dependencies>
+        <!-- API we are implementing -->
+        <dependency>
+            <groupId>com.travellinck.integration.clients.mobile-leisure</groupId>
+            <artifactId>com.travellinck.clients.ultrasimple.api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <!-- OSGi environment -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_core</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_compendium</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Travellinck vocabularies and tools -->
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.supplier-utilities</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.transIT.java-tools</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.xml-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.core</groupId>
+            <artifactId>com.travellinck.corporate.integration</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- Filter OSGi configs (set values based on maven properties) -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <!-- No java packages are exported to other bundles (only exposes services) -->
+                        <Export-Package>!com.travellinck.clients.ultrasimple.impl.*</Export-Package>
+                        <Private-Package>com.travellinck.clients.ultrasimple.impl.*</Private-Package>
+                        <Service-Component>OSGI-INF/quoting-component.xml,OSGI-INF/purchasing-component.xml</Service-Component>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

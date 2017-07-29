@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Jul 27 17:57:11 SAST 2017
+com.travellinck.reporting.transfer-1.0.pom>=
+com.travellinck.reporting.transfer-1.0.oar>=
+com.travellinck.reporting.transfer-1.0.jar>=

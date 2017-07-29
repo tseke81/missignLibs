@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>gds</artifactId>
+    <groupId>com.travellinck.integration.suppliers.gds</groupId>
+    <version>1.0.0</version>
+  </parent>
+
+  <groupId>com.travellinck.integration.suppliers.gds</groupId>
+  <artifactId>com.travellinck.supplier.gds.remarks.impl</artifactId>
+  <version>1.0.0</version>
+  <packaging>bundle</packaging>
+
+  <name>GDS Remarks (Accounting entries) implementation</name>
+  <description>
+  	Implementation of a service that produces accounting remarks relevant
+    to various Travellinck trip-related events, agnostic of paticular
+    GDS implementations (e.g. Sabre, Galileo, Amadeus...)
+  </description>
+
+  <dependencies>
+      <!-- We implement this API -->
+      <dependency>
+          <groupId>com.travellinck.integration.suppliers.gds</groupId>
+          <artifactId>com.travellinck.supplier.gds.remarks.api</artifactId>
+          <scope>provided</scope>
+      </dependency>
+      <!-- Using data structures from here -->
+      <dependency>
+          <groupId>com.travellinck.integration.vocabulary</groupId>
+          <artifactId>com.travellinck.transIT.java-api</artifactId>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.jmock</groupId>
+          <artifactId>jmock-junit4</artifactId>
+          <scope>test</scope>
+      </dependency>
+  </dependencies>
+
+    <build>
+        <resources>
+            <!-- Filter OSGi configs (set values based on maven properties) -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Export-Package>!com.travellinck.supplier.gds.impl.remarks.*</Export-Package>
+                        <Private-Package>com.travellinck.supplier.gds.impl.remarks.*</Private-Package>
+                        <Service-Component>OSGI-INF/component.xml</Service-Component>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

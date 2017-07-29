@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>infrastructure</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.infrastructure</groupId>
+    <artifactId>transaction-components</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck Transaction Components</name>
+    <description>
+        A simplified transaction service (layer in front of Jini Transaction Manager)
+        for the express purpose of being able to mock (clean separation via interfaces).
+    </description>
+
+    <dependencies>
+
+        <!-- API -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>transaction-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Rio / Jini -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-lib</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>javaspaces-utilities</artifactId>
+        </dependency>
+
+    </dependencies>
+    
+</project>

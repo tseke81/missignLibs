@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.travellinck.integration.utilities</groupId>
+    <artifactId>object-renderer</artifactId>
+    <version>0.1</version>
+    <name>Travellinck Object Rendering Framework</name>
+    <description>
+        A multi-format, plug-able object rendering framework. Intends to not only overcome
+        the limitations of the toString()-based rendering of objects to human-readable text,
+        but to also support rendering of objects (which may represent complex object graphs)
+        to different output formats, such as HTML, etc - as well as different rendering 'intents'
+        for different target audiences, etc.
+
+        This project does not aim to solve the world's problems, but intends to provide an
+        easy-to-use, easy-to-extend framework to display or log complex object graphs, and
+        facilitate complex object-graph-to-natural-language transformations.
+    </description>
+
+    <developers>
+        <developer>
+            <name>Dawid Loubser</name>
+            <organization>Travellinck International</organization>
+            <email>dawid@travellinck.com</email>
+            <roles>
+                <role>Architect</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <version>[0.3.1,)</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <fork>true</fork>
+                    <maxmem>1024m</maxmem>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>deployments</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.deployments</groupId>
+    <artifactId>seed-local-repo</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Local Maven Repo Dependencies Seeder</name>
+    <description>
+        Deployments to Rio provision Java artifacts by finding
+        them in the local repository, or in the central Maven
+        repo. The current version of Rio cannot pull from
+        other repos, such as organisation-specific ones requiring
+        authentication.
+
+        This pom's only purpose is to declare dependencies on such
+        resources (ones not already explicitly required by code
+        already) so as to pull those into the local maven
+        repo, to enable Rio provisioning.
+    </description>
+
+    <dependencies>
+        <!-- Blitz JavaSpaces (From https://github.com/DawidLoubser/blitz-javaspaces-modularised) -->
+        <dependency>
+            <groupId>org.dancres.blitz</groupId>
+            <artifactId>blitz-proxy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.dancres.blitz</groupId>
+            <artifactId>blitz-service</artifactId>
+        </dependency>
+
+        <!-- Transaction manager (not in central repo, Apache River slacking) -->
+        <dependency>
+            <groupId>org.apache.river</groupId>
+            <artifactId>mahalo-dl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.river</groupId>
+            <artifactId>mahalo</artifactId>
+        </dependency>
+
+        <!-- Outrigger JavaSpaces (newer versions not published by River yet) -->
+        <dependency>
+            <!-- Implementation -->
+            <groupId>org.apache.river</groupId>
+            <artifactId>outrigger</artifactId>
+        </dependency>
+        <dependency>
+            <!-- Proxy / downloadable code -->
+            <groupId>org.apache.river</groupId>
+            <artifactId>outrigger-dl</artifactId>
+        </dependency>
+
+    </dependencies>
+    
+</project>

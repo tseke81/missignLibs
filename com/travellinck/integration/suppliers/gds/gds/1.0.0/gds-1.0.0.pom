@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration</groupId>
+        <artifactId>travellinck-osgi-bom</artifactId>
+        <version>1.0</version>
+        <relativePath></relativePath>
+    </parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.travellinck.integration.suppliers.gds</groupId>
+	<artifactId>gds</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<name>GDS (abstract) modules</name>
+    <description>
+        Tools and modules that pertain abstractly to various
+        types of GDS (Amadeus, Sabre, etc)
+    </description>
+
+	<modules>
+		<module>com.travellinck.supplier.gds.remarks.api</module>
+        <module>com.travellinck.supplier.gds.remarks.impl</module>
+    </modules>
+
+</project>

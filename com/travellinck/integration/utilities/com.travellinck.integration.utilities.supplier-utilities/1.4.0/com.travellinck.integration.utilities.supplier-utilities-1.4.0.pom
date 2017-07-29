@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration</groupId>
+        <artifactId>travellinck-osgi-bom</artifactId>
+        <version>1.0</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <properties>
+        <bundle.name>Supplier Utilities</bundle.name>
+        <bundle.symbolicName>com.travellinck.integration.utilities.supplier-utilities</bundle.symbolicName>
+        <bundle.namespace>com.travellinck.integration.utilities.supplier-utilities</bundle.namespace>
+    </properties>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.utilities</groupId>
+    <artifactId>com.travellinck.integration.utilities.supplier-utilities</artifactId>
+    <version>1.4.0</version>
+
+    <name>${bundle.name} [osgi]</name>
+    <description>
+        Common utility functions and data structures used by supplier adaptors. Many of the utilities cater
+        for an environment where supplier adaptors historically did not have access to a database, etc
+        (file-based configuration) which, in the face of an OSGi environment supporting configuration
+        management etc, should be deprecated.
+    </description>
+
+    <packaging>bundle</packaging>
+
+    <dependencies>
+        <!-- OSGi environment -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_core</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_compendium</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Travellinck vocabularies and tools -->
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.transIT.java-tools</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <systemProperties>
+                  <property>
+                    <name>java.util.logging.config.file</name>
+                    <value>${project.build.testOutputDirectory}/logging.properties</value>
+                  </property>
+                </systemProperties>
+              </configuration>
+            </plugin>
+            <!-- Configuration to compile all schemas in the
+           resources/schemas directory. Automatically
+           invoked during the 'generate-sources' phase -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>mainSchemas</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <episodeFile>target/mainSchemas.episode</episodeFile>
+                            <schemaDirectory>src/main/resources</schemaDirectory>
+                            <schemaIncludes>
+                                <include>*.xsd</include>
+                            </schemaIncludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Export-Package>
+                            com.travellinck.integration.supplier.utilities.conceptmapping;
+                            com.travellinck.integration.supplier.utilities.map;
+                            com.travellinck.integration.supplier.utilities.settlement;
+                            com.travellinck.integration.supplier.utilities.osgi.publishing;
+                            com.travellinck.integration.supplier.utilities.osgi.configuration;
+                            com.travellinck.integration.supplier.utilities.proxy;
+                            com.travellinck.integration.supplier.utilities;
+                        </Export-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <!-- Documentation generation (XML, for further transformation) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <doclet>com.github.markusbernhardt.xmldoclet.XmlDoclet</doclet>
+                    <useStandardDocletOptions>false</useStandardDocletOptions>
+                    <docletArtifact>
+                        <groupId>com.github.markusbernhardt</groupId>
+                        <artifactId>xml-doclet</artifactId>
+                        <version>1.0.5</version>
+                    </docletArtifact>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

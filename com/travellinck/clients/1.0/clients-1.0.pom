@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>corporate</artifactId>
+        <version>3.9</version>
+    </parent>
+    <artifactId>clients</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>Travellinck :: Corporate Client modules</name>
+    <description>
+        Hosts client-specific components that are included as part of the
+        corporate app deployment. Typically used for various integrations
+        (such as profile sync) etc.
+    </description>
+
+    <modules>
+        <!-- TODO: Move Old Mutual components (from CorporateBusinessModel) here, after
+             refactoring to not directly use entities - but services instead -->
+        <module>nedbank</module>
+    </modules>
+
+</project>
+

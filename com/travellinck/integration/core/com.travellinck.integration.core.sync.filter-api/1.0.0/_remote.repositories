@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue May 12 11:52:22 SAST 2015
+com.travellinck.integration.core.sync.filter-api-1.0.0.jar>=
+com.travellinck.integration.core.sync.filter-api-1.0.0.pom>=

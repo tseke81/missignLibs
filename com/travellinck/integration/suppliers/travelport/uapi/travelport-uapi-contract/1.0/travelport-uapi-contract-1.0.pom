@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration.suppliers.travelport-uapi</groupId>
+        <artifactId>travelport-uapi</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.travellinck.integration.suppliers.travelport.uapi</groupId>
+    <artifactId>travelport-uapi-contract</artifactId>
+    <version>1.0</version>
+
+    <name>Travelport UAPI Contract (Java API)</name>
+
+    <description>
+        Generated API codes for Travelport's UAPI
+    </description>
+
+    <properties>
+        <bundle.name>Sync Adaptor: Travelport UAPI</bundle.name>
+        <bundle.symbolicName>com.travellinck.integration.suppliers.adaptor.travelport.uapi</bundle.symbolicName>
+        <bundle.namespace>travelport-uapi-contract</bundle.namespace>
+    </properties>
+
+    <!--<dependencies>-->
+        <!--<dependency>-->
+            <!--<groupId>junit</groupId>-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.jmock</groupId>-->
+            <!--<artifactId>jmock-junit4</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>commons-codec</groupId>-->
+            <!--<artifactId>commons-codec</artifactId>-->
+            <!--<version>1.6</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+    <!--</dependencies>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>travelportUAPIWsdlToJavaTransformation</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <target>2.1</target>
+                            <extension>true</extension>
+                            <wsdlDirectory>${basedir}/src/main/resources/schema/Release-V8.1.0.78-V8.1</wsdlDirectory>
+                            <wsdlFiles>
+                                <wsdlFile>air_v30_0/Air.wsdl</wsdlFile>
+                                <wsdlFile>gdsQueue_v30_0/GDSQueue.wsdl</wsdlFile>
+                                <wsdlFile>hotel_v30_0/Hotel.wsdl</wsdlFile>
+                                <wsdlFile>rail_v30_0/Rail.wsdl</wsdlFile>
+                                <wsdlFile>system_v9_0/System.wsdl</wsdlFile>
+                                <wsdlFile>terminal_v9_0/Terminal.wsdl</wsdlFile>
+                                <wsdlFile>universal_v30_0/UniversalRecord.wsdl</wsdlFile>
+                                <wsdlFile>uprofile_v20_0/UProfile.wsdl</wsdlFile>
+                                <wsdlFile>util_v30_0/Util.wsdl</wsdlFile>
+                                <wsdlFile>vehicle_v30_0/Vehicle.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <!--<staleFile>${project.build.directory}/jaxws/stale/.staleFlag</staleFile>-->
+                            <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

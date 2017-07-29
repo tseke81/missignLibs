@@ -1,0 +1,5 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Mon Aug 05 11:21:50 SAST 2013
+calculator-deployment-1.0.oar>=
+calculator-deployment-1.0.jar>=
+calculator-deployment-1.0.pom>=

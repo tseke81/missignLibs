@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Mon Aug 19 08:04:42 SAST 2013
+@default-http\://repo.travellinck.com/nexus/content/repositories/releases/.lastUpdated=1376892282604
+http\://repo.travellinck.com/nexus/content/repositories/releases/.error=Could not transfer artifact com.travellinck.integration.vocabulary\:com.travellinck.transIT.java-api\:pom\:1.128.2 from/to travellinck-repo (http\://repo.travellinck.com/nexus/content/repositories/releases)\: Connection to http\://repo.travellinck.com refused

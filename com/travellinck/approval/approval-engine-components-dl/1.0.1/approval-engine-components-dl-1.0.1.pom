@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>approval</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.approval</groupId>
+    <artifactId>approval-engine-components-dl</artifactId>
+    <version>1.0.1</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck Approval Engine Public Codebase</name>
+
+    <description>
+        While the approval-engine-api specifies a clean space-based API for the approval engine, it does not
+        contain all the types which might be required to be exchanged across remote services or via space
+        in order to build fully-functional approval system components.
+
+        Examples include: Internal timing signals which are written to space to be scheduled, as well
+        as specific business request and supporting documentation vocabularies.
+    </description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-api</artifactId>
+        </dependency>
+
+        <!-- Service Contract -->
+        <dependency>
+            <groupId>com.travellinck.approval</groupId>
+            <artifactId>approval-engine-api</artifactId>
+        </dependency>
+
+        <!-- TransIT Travel vocabulary (for corporate travel requests being approved) -->
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

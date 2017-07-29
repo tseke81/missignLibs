@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>deployments</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.deployments</groupId>
+    <artifactId>migration</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Migration Deployment Packages</name>
+    <description>
+        Once-off deployment that perform specific migration actions
+        (such as for entries in space)
+    </description>
+
+    <modules>
+        <module>scheduling-1.0-1.1</module>
+        <module>outrigger-to-blitz</module>
+    </modules>
+    
+</project>

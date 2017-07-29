@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>infrastructure</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.infrastructure</groupId>
+    <artifactId>scheduling-api</artifactId>
+    <version>1.1</version>
+    <packaging>jar</packaging>
+
+    <name>Travellinck Scheduled Entry Publishing API</name>
+    <description>
+        Contract for a simple service that publishes Entries in
+        a JavaSpace at some future time, which relieves workers
+        interacting with the space from having to manage time
+        schedules, and which achieves reliability by representing
+        the state of the complete publishing schedule in the space
+        at any one time.
+    </description>
+
+
+    <dependencies>
+        <!-- Rio / Jini -->
+        <dependency>
+            <groupId>org.rioproject</groupId>
+            <artifactId>rio-api</artifactId>
+        </dependency>
+
+        <!-- Adheres to the SOA in JavaSpaces Convention -->
+        <dependency>
+            <groupId>com.travellinck.infrastructure</groupId>
+            <artifactId>javaspaces-utilities</artifactId>
+        </dependency>
+
+        <!-- JavaBeans validation API, used to specify constraints on objects -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+    </dependencies>
+    
+</project>

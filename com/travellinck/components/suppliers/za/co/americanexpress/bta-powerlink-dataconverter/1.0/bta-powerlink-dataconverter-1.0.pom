@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.components.suppliers</groupId>
+        <artifactId>za.co.americanexpress</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.travellinck.components.suppliers.za.co.americanexpress</groupId>
+    <artifactId>bta-powerlink-dataconverter</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>BTA Powerlink Data Converter</name>
+    <description>
+        Stand-alone library to convert between Travellinck CSV-based report outputs
+        to the BTA Powerlink "flat-file" format.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>csv-tools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <developers>
+        <developer>
+            <name>Rishabh Jahanabadi</name>
+            <email>rishabh.j@jini.guru</email>
+            <organization>Jini.Guru</organization>
+        </developer>
+        <developer>
+            <name>Deepeentee Jhoomuck</name>
+            <email>deepeentee.j@jini.guru</email>
+            <organization>Jini.Guru</organization>
+        </developer>
+    </developers>
+
+</project>

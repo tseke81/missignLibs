@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.travellinck.integration.core</groupId>
+        <artifactId>core</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <properties>
+        <bundle.name>General Car Rental Vouchers Service (Proxy)</bundle.name>
+        <bundle.symbolicName>com.travellinck.integration.core.carrental.vouchers</bundle.symbolicName>
+        <bundle.namespace>${bundle.symbolicName}</bundle.namespace>
+        <com.travellinck.corporate.carrental.vouchers.wsdl>${com.travellinck.corporate.webservices.root}/CarRentalVouchers?WSDL</com.travellinck.corporate.carrental.vouchers.wsdl>
+    </properties>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.integration.core</groupId>
+    <artifactId>com.travellinck.integration.core.carrental.vouchers</artifactId>
+    <version>1.0</version>
+    <packaging>bundle</packaging>
+
+    <name>${bundle.name} [osgi]</name>
+    <description>
+        A proxy to the Car Rental Vouchers Service (via web service, in JBoss)
+    </description>
+
+    <dependencies>
+        <!-- OSGi environment -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_core</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_compendium</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Travellinck vocabularies and tools -->
+        <dependency>
+            <groupId>com.travellinck.integration.vocabulary</groupId>
+            <artifactId>com.travellinck.transIT.java-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>com.travellinck.integration.utilities.supplier-utilities</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.travellinck.integration.utilities</groupId>
+            <artifactId>travellinck-testing-utilities</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- Filter OSGi configs (set values based on maven properties) -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <!-- No java packages are exported to other bundles (only exposes services) -->
+                        <Export-Package>!${bundle.namespace}.*</Export-Package>
+                        <Private-Package>${bundle.namespace}.*</Private-Package>
+                        <Service-Component>OSGI-INF/component.xml</Service-Component>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

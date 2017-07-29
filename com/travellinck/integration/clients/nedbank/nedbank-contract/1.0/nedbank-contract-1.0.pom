@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>nedbank</artifactId>
+        <groupId>com.travellinck.integration.clients.nedbank</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.travellinck.integration.clients.nedbank</groupId>
+    <artifactId>nedbank-contract</artifactId>
+    <version>1.0</version>
+    <name>Nedbank Contract (Java API)</name>
+    <description>
+        Contracts for various services that Nedbank expose to Travellinck.
+    </description>
+
+    <profiles>
+        <profile>
+            <id>wsimport</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>jaxws-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>wsimport</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <target>2.1</target>
+                            <wsdlDirectory></wsdlDirectory>
+                            <wsdlUrls>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/costCenters/ProcurementManagement_v1.0_DMZSoapEndpoint.wsdl</wsdlUrl>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/costCenters/NedbankOrganisationInformation_v1.0_DMZSoapEndpoint.wsdl</wsdlUrl>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/employees/EmployeeInformation_v1.0_DMZSoapEndpoint.wsdl</wsdlUrl>
+                                <wsdlUrl>${basedir}/src/main/resources/contracts/training/TrainingInformation_v1.0_DMZSoapEndpoint.wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

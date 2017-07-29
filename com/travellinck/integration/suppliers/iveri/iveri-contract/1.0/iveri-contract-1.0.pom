@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.travellinck.integration.suppliers.iveri</groupId>
+        <artifactId>iveri</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>com.travellinck.integration.suppliers.iveri</groupId>
+    <artifactId>iveri-contract</artifactId>
+    <version>1.0</version>
+
+    <name>iVeri Payment Gateway Contract (Java API)</name>
+    <description>
+        Project responsible for building a Java (JAXB/JAX-WS) API from the
+        iVeri web service contract, and (separate, unliked) schema. It also
+        includes, as utilities, a convenience JAXB context, as well as a
+        utility to easily create and parse iVeri messages due to their
+        busted protocol.
+    </description>
+
+
+    <build>
+        <plugins>
+            <!-- WSDL to Java Compilation -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <target>2.1</target>
+                    <wsdlUrls>
+                        <wsdlUrl>${basedir}/src/main/resources/wsdl/iveri-original.wsdl</wsdlUrl>
+                    </wsdlUrls>
+                    <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+                    <bindingFiles>
+                      <bindingFile>${basedir}/src/main/resources/wsdl/iveri-binding.xjb</bindingFile>
+                    </bindingFiles>
+                </configuration>
+            </plugin>
+
+            <!-- XSD to Java compilation - iVeri specifies a separate, non-linked XSD for the actual protocol,
+                 which is serialised (as text) inside messages defined by the WSDL. doh. -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                    <generateDirectory>target/generated-sources</generateDirectory>
+                    <removeOldOutput>false</removeOldOutput>
+                    <!-- Never cache results (always recompile) - otherwise, prior JAX-WS compilation
+                         causes this plugin to neevr run. doh. -->
+                    <forceRegenerate>true</forceRegenerate>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

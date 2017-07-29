@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>citylodge</artifactId>
+    <groupId>com.travellinck.integration.suppliers.citylodge</groupId>
+    <version>1.0</version>
+  </parent>
+  <groupId>com.travellinck.integration.suppliers.citylodge</groupId>
+  <artifactId>citylodge-contract</artifactId>
+  <version>1.0</version>
+  <name>City Lodge Contract (Java API)</name>
+  <url>http://maven.apache.org</url>
+  
+  
+  <profiles>
+    <profile>
+      <id>wsimport</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jaxws-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>wsimport</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <target>2.1</target>
+              <wsdlUrls>
+                <wsdlUrl>${basedir}/src/main/resources/contracts/citylodge-soap.wsdl</wsdlUrl>
+              </wsdlUrls>
+              <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
+</project>

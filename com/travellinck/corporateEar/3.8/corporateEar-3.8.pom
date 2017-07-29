@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   
+   <parent>
+      <groupId>com.travellinck</groupId>
+      <artifactId>corporate</artifactId>
+       <version>3.8</version>
+   </parent>
+   
+   <groupId>com.travellinck</groupId>
+   <artifactId>corporateEar</artifactId>
+   <packaging>ear</packaging>
+   <version>3.8</version>
+   <name>Travellinck :: Corporate EAR assembly</name>
+   
+   <dependencies>
+      
+      <dependency>
+         <groupId>com.travellinck</groupId>
+         <artifactId>corporateBusinessModel</artifactId>
+         <version>${project.version}</version>
+         <type>ejb</type>
+      </dependency>
+      <dependency>
+         <groupId>com.travellinck</groupId>
+         <artifactId>corporateInterface</artifactId>
+         <version>${project.version}</version>
+         <type>war</type>
+      </dependency>
+      <dependency>
+         <groupId>com.travellinck</groupId>
+         <artifactId>shortenURL</artifactId>
+         <version>${project.version}</version>
+         <type>war</type>
+      </dependency>
+
+      <dependency>
+         <groupId>com.travellinck</groupId>
+         <artifactId>adminInterface</artifactId>
+         <version>${project.version}</version>
+         <type>war</type>
+      </dependency>
+      
+      <dependency>
+         <groupId>com.travellinck</groupId>
+         <artifactId>corporateMarketingSite</artifactId>
+         <version>${project.version}</version>
+         <type>war</type>
+      </dependency>
+
+       <!-- General, shared dependencies used by modules -->
+       <dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts-tiles</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts-taglib</artifactId>
+		</dependency>
+       <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-secure-extensions</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nkp.struts13.sslext</groupId>
+            <artifactId>sslext</artifactId>
+         </dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+		<dependency>
+		    <groupId>net.sourceforge.jexcelapi</groupId>
+		    <artifactId>jxl</artifactId>
+		</dependency>        
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+   </dependencies>
+   
+   <build>
+      <plugins>
+         <plugin>
+            <artifactId>maven-ear-plugin</artifactId>
+            <configuration>
+                <!--
+               <archive>
+                  <manifestEntries></manifestEntries>
+               </archive>
+               -->
+               <version>6</version>
+               <defaultLibBundleDir>lib</defaultLibBundleDir>
+               <modules>
+                  <webModule>
+                     <groupId>com.travellinck</groupId>
+                     <artifactId>corporateInterface</artifactId>
+                     <contextRoot>/corporateInterface</contextRoot>
+                  </webModule>
+                  <webModule>
+                     <groupId>com.travellinck</groupId>
+                     <artifactId>adminInterface</artifactId>
+                     <contextRoot>/admin</contextRoot>
+                  </webModule>
+                  <webModule>
+                     <groupId>com.travellinck</groupId>
+                     <artifactId>corporateMarketingSite</artifactId>
+                     <contextRoot>/</contextRoot>
+                  </webModule>
+                  <webModule>
+                     <groupId>com.travellinck</groupId>
+                     <artifactId>shortenURL</artifactId>
+                     <contextRoot>/go</contextRoot>
+                  </webModule>
+               </modules>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+</project>

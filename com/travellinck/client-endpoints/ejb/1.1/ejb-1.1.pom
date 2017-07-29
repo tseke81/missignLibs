@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>client-endpoints</artifactId>
+        <version>1.1</version>
+    </parent>
+
+    <groupId>com.travellinck.client-endpoints</groupId>
+    <artifactId>ejb</artifactId>
+    <version>1.1</version>
+
+    <packaging>jar</packaging>
+
+    <name>Travellinck :: EJB-based client endpoints</name>
+    <description>
+        Client endpoint proxies exposed using EJB (e.g. JAX-WS web services)
+    </description>
+    <url>http://www.travellinck.com</url>
+
+
+    <dependencies>
+        <!-- This is a Java EE 6 module -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- We call integration layer via OSGi -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_compendium</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Using (unfortunately) proprietary JBoss services stuff -->
+        <dependency>
+            <groupId>org.jboss.msc</groupId>
+            <artifactId>jboss-msc</artifactId>
+            <version>1.0.1.GA</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.ws</groupId>-->
+            <!--<artifactId>jbossws-api</artifactId>-->
+            <!--<version>1.0.0.GA</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
+        <!-- Dependencies to Service APIs that we expose in this module -->
+        <dependency>
+            <groupId>com.travellinck.integration.clients.mobile-leisure</groupId>
+            <artifactId>com.travellinck.clients.ultrasimple.api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Unit / Integration testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <!-- JBoss 7 module depdencies so we can call OSGi directly (This is currently a bit ugly) -->
+        <client.endpoints.module.dependencies>org.osgi.core,org.jboss.osgi.framework,deployment.com.travellinck.clients.ultrasimple.api:1.0.2</client.endpoints.module.dependencies>
+    </properties>
+
+
+    <build>
+        <!-- Remove version from final deployed name (affects web service URLs) -->
+        <finalName>${artifactId}</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifestEntries>
+                            <!-- Dependencies on stuff (provided by environment) and OSGi integration layer modules -->
+                            <Dependencies>${client.endpoints.module.dependencies}</Dependencies>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <!-- All resources for which we do not want filtering -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>*.properties</exclude>
+                </excludes>
+            </resource>
+            <!-- All resources for which we do want filtering -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>target/jaxws</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <!-- Do integration testing on-demand only -->
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Integration test(s) -->
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>

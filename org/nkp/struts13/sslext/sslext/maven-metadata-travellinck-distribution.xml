@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.nkp.struts13.sslext</groupId>
+  <artifactId>sslext</artifactId>
+  <version>1.0</version>
+  <versioning>
+    <versions>
+      <version>1.0</version>
+    </versions>
+    <lastUpdated>20110608112419</lastUpdated>
+  </versioning>
+</metadata>

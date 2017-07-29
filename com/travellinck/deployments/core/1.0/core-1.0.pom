@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>deployments</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.deployments</groupId>
+    <artifactId>core</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Core Deployment Packages</name>
+    <description>
+        Deployment packages that provision services that are either required by all other
+        client deployments, or by Travellinck itself. One cannot expect any client deployments
+        to function without a core deployment.
+    </description>
+
+    <modules>
+        <module>com.travellinck</module>
+        <module>mail-to-otheritems</module>
+    </modules>
+    
+</project>

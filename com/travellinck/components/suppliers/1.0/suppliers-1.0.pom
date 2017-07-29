@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+        <groupId>com.travellinck</groupId>
+        <artifactId>components</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travellinck.components</groupId>
+    <artifactId>suppliers</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Supplier Components (parent)</name>
+    <description>
+        Project root of all components that provide supplier
+        services to Travellinck (usually supplier adaptors
+        that adapt a supplier service to a core Travellinck contract)
+    </description>
+
+    <modules>
+        <module>com.clickatell</module>
+        <module>com.travellinck.banking</module>
+        <module>za.co.americanexpress</module>
+    </modules>
+    
+</project>

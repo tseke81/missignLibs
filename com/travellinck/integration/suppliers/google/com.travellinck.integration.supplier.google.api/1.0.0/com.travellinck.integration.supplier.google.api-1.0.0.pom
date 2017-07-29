@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>google</artifactId>
+        <groupId>com.travellinck.integration.suppliers.google</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <properties>
+        <bundle.name>Supplier API: Google</bundle.name>
+        <bundle.symbolicName>com.travellinck.integration.suppliers.google</bundle.symbolicName>
+        <bundle.namespace>google-contract</bundle.namespace>
+    </properties>
+
+
+    <groupId>com.travellinck.integration.suppliers.google</groupId>
+    <artifactId>com.travellinck.integration.supplier.google.api</artifactId>
+    <version>1.0.0</version>
+    <packaging>bundle</packaging>
+    <name>Google Contract (Java API)</name>
+    <description>
+        A JSON-based API for Google API.
+    </description>
+    <url>http://google.com/</url>
+
+    <developers>
+        <developer>
+            <name>Tom du Plessis</name>
+            <email>tom.duplessis@techdynamics.co.za</email>
+            <organization>Techdynamics dev</organization>
+            <roles>
+                <role>Current developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <dependencies>
+
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+            <!--<artifactId>jackson-databind</artifactId>-->
+            <!--<version>2.2.2</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- Filter OSGi configs (set values based on maven properties) -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>com.googlecode.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>0.3.7</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
+                    <outputDirectory>target/generated-sources/jsonschema2pojo</outputDirectory>
+                    <targetPackage>com.google</targetPackage>
+                    <annotationStyle>none</annotationStyle>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.ops4j</groupId>
+                <artifactId>maven-pax-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <!-- No java packages are exported to other bundles (only exposes services) -->
+                        <Export-Package>com.google.*</Export-Package>
+                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                        <Embed-Transitive>true</Embed-Transitive>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

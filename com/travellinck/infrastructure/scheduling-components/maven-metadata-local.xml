@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.travellinck.infrastructure</groupId>
+  <artifactId>scheduling-components</artifactId>
+  <versioning>
+    <release>1.1</release>
+    <versions>
+      <version>1.1</version>
+    </versions>
+    <lastUpdated>20170727155516</lastUpdated>
+  </versioning>
+</metadata>
